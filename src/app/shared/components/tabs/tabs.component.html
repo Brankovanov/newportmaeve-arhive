@@ -2,27 +2,40 @@
   @for (item of items(); track item.id) {
     @if (item.href) {
       <a
+        #tabControl
         class="tabs__tab"
-        [class.tabs__tab--active]="resolvedActiveId() === item.id"
+        role="tab"
+        [attr.id]="getTabId(item)"
+        [class.tabs__tab--active]="isSelected(item)"
         [class.tabs__tab--disabled]="item.disabled"
+        [class.tabs__tab--active]="resolvedActiveId() === item.id"
         [routerLink]="item.href"
         routerLinkActive="tabs__tab--active"
+        [attr.aria-selected]="isSelected(item)"
+        [attr.aria-controls]="item.panelId ?? null"
         [attr.aria-disabled]="item.disabled || null"
-        [attr.tabindex]="item.disabled ? -1 : 0"
+        [attr.data-tab-id]="item.id"
+        [attr.tabindex]="getTabIndex(item)"
+        (keydown)="onTabKeydown($event, item)"
       >
         {{ item.label }}
       </a>
     } @else {
       <button
+        #tabControl
         type="button"
         class="tabs__tab"
-        [class.tabs__tab--active]="resolvedActiveId() === item.id"
+        [attr.id]="getTabId(item)"
+        [class.tabs__tab--active]="isSelected(item)"
         [class.tabs__tab--disabled]="item.disabled"
         role="tab"
-        [attr.aria-selected]="resolvedActiveId() === item.id"
+        [attr.aria-selected]="isSelected(item)"
         [attr.aria-controls]="item.panelId ?? null"
+        [attr.data-tab-id]="item.id"
+        [attr.tabindex]="getTabIndex(item)"
         [disabled]="item.disabled ?? false"
         (click)="selectTab(item)"
+        (keydown)="onTabKeydown($event, item)"
       >
         {{ item.label }}
       </button>

@@ -1,4 +1,4 @@
-<div [ngClass]="class()">
+<div [class]="class() ?? ''" aria-hidden="true">
   <!-- Text skeleton (default) -->
   @if (variant() === 'text') {
     <div class="skeleton-text-wrapper">

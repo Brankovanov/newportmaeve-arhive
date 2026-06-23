@@ -1,5 +1,7 @@
-import { Component, input, output, effect, ViewChild, ElementRef, AfterViewInit } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { CommonModule, DOCUMENT } from '@angular/common';
+import { AfterViewInit, Component, ElementRef, ViewChild, effect, inject, input, output } from '@angular/core';
+
+let modalInstanceId = 0;
 
 /**
  * Modal/Dialog Component
@@ -49,7 +51,10 @@ import { CommonModule } from '@angular/common';
   },
 })
 export class ModalComponent implements AfterViewInit {
-  @ViewChild('modalContent') modalContent?: ElementRef;
+  @ViewChild('modalContent') modalContent?: ElementRef<HTMLElement>;
+
+  private readonly document = inject(DOCUMENT);
+  private readonly hostElement = inject(ElementRef<HTMLElement>);
 
   /**
    * Whether the modal is open
@@ -81,6 +86,11 @@ export class ModalComponent implements AfterViewInit {
   readonly size = input<'sm' | 'md' | 'lg' | 'xl'>('md');
 
   /**
+   * Optional description for screen readers
+   */
+  readonly description = input<string | null>(null);
+
+  /**
    * Emitted when close is requested
    */
   readonly onClose = output<void>();
@@ -90,35 +100,62 @@ export class ModalComponent implements AfterViewInit {
    */
   readonly onConfirm = output<void>();
 
+  protected readonly titleId = `modal-title-${modalInstanceId}`;
+  protected readonly bodyId = `modal-body-${modalInstanceId}`;
+
   /**
    * Track previous open state for animation
    */
   private previousOpenState = false;
+  private previouslyFocusedElement: HTMLElement | null = null;
 
-  constructor(private elementRef: ElementRef) {
+  constructor() {
+    modalInstanceId += 1;
+
+    effect(() => {
+      const isOpen = this.isOpen();
+
+      if (isOpen && !this.previousOpenState) {
+        this.captureFocus();
+        queueMicrotask(() => this.focusInitialElement());
+      }
+
+      if (!isOpen && this.previousOpenState) {
+        this.restoreFocus();
+      }
+
+      this.previousOpenState = isOpen;
+    });
+
     // Handle ESC key to close modal
     effect(() => {
-      if (this.isOpen() && this.closeOnEsc()) {
-        const handleEsc = (event: KeyboardEvent) => {
-          if (event.key === 'Escape') {
-            this.close();
-          }
-        };
-
-        document.addEventListener('keydown', handleEsc);
-
-        return () => {
-          document.removeEventListener('keydown', handleEsc);
-        };
+      if (!this.isOpen()) {
+        return;
       }
-      return;
+
+      const handleKeydown = (event: KeyboardEvent) => {
+        if (event.key === 'Escape' && this.closeOnEsc()) {
+          event.preventDefault();
+          this.close();
+          return;
+        }
+
+        if (event.key === 'Tab') {
+          this.trapFocus(event);
+        }
+      };
+
+      this.document.addEventListener('keydown', handleKeydown);
+
+      return () => {
+        this.document.removeEventListener('keydown', handleKeydown);
+      };
     });
   }
 
   ngAfterViewInit(): void {
-    // Focus modal content when opened
     if (this.isOpen() && this.modalContent) {
-      this.modalContent.nativeElement.focus();
+      this.focusInitialElement();
     }
   }
 
@@ -151,5 +188,67 @@ export class ModalComponent implements AfterViewInit {
    */
   contentHasFooter(): boolean {
     return true; // Always show footer area, content projection will handle visibility
+  }
+
+  private captureFocus(): void {
+    const activeElement = this.document.activeElement;
+    this.previouslyFocusedElement = activeElement instanceof HTMLElement ? activeElement : null;
+  }
+
+  private focusInitialElement(): void {
+    const focusableElements = this.getFocusableElements();
+
+    if (focusableElements.length > 0) {
+      focusableElements[0].focus();
+      return;
+    }
+
+    this.modalContent?.nativeElement.focus();
+  }
+
+  private restoreFocus(): void {
+    this.previouslyFocusedElement?.focus();
+    this.previouslyFocusedElement = null;
+  }
+
+  private trapFocus(event: KeyboardEvent): void {
+    const focusableElements = this.getFocusableElements();
+
+    if (focusableElements.length === 0) {
+      event.preventDefault();
+      this.modalContent?.nativeElement.focus();
+      return;
+    }
+
+    const firstFocusableElement = focusableElements[0];
+    const lastFocusableElement = focusableElements[focusableElements.length - 1];
+    const activeElement = this.document.activeElement;
+
+    if (event.shiftKey && activeElement === firstFocusableElement) {
+      event.preventDefault();
+      lastFocusableElement.focus();
+      return;
+    }
+
+    if (!event.shiftKey && activeElement === lastFocusableElement) {
+      event.preventDefault();
+      firstFocusableElement.focus();
+    }
+  }
+
+  private getFocusableElements(): HTMLElement[] {
+    const modalElement = this.modalContent?.nativeElement ?? this.hostElement.nativeElement;
+    const focusableSelector = [
+      'a[href]',
+      'button:not([disabled])',
+      'textarea:not([disabled])',
+      'input:not([disabled])',
+      'select:not([disabled])',
+      '[tabindex]:not([tabindex="-1"])'
+    ].join(', ');
+
+    return Array.from(modalElement.querySelectorAll(focusableSelector))
+      .map((element) => element as HTMLElement)
+      .filter((element) => !element.hasAttribute('hidden') && !element.getAttribute('aria-hidden'));
   }
 }

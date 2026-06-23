@@ -5,12 +5,12 @@
   [class.spinner-lg]="size() === 'lg'"
   [class.spinner-primary]="color() === 'primary'"
   [class.spinner-secondary]="color() === 'secondary'"
-  [attr.aria-label]="ariaLabel()"
+  aria-hidden="true"
 >
   <!-- Circular spinner -->
   @if (variant() === 'circular') {
     <div class="spinner-circular">
-      <svg class="spinner-svg" viewBox="0 0 50 50">
+      <svg class="spinner-svg" viewBox="0 0 50 50" focusable="false">
         <circle class="spinner-circle" cx="25" cy="25" r="20"></circle>
       </svg>
     </div>

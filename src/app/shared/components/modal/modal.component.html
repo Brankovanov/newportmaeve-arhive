@@ -15,13 +15,14 @@
     [class.modal-xl]="size() === 'xl'"
     role="dialog"
     [attr.aria-modal]="isOpen()"
-    [attr.aria-labelledby]="title() ? 'modal-title' : null"
+    [attr.aria-labelledby]="title() ? titleId : null"
+    [attr.aria-describedby]="bodyId"
     #modalContent
     tabindex="-1"
   >
     <!-- Modal Header -->
     <div class="modal-header" *ngIf="title()">
-      <h2 id="modal-title" class="modal-title">{{ title() }}</h2>
+      <h2 [id]="titleId" class="modal-title">{{ title() }}</h2>
       <button
         type="button"
         class="modal-close-btn"
@@ -33,7 +34,10 @@
     </div>
 
     <!-- Modal Body (Content Projection) -->
-    <div class="modal-body">
+    <div class="modal-body" [id]="bodyId">
+      @if (description()) {
+        <p class="sr-only">{{ description() }}</p>
+      }
       <ng-content select=".modal-body"></ng-content>
       <ng-content *ngIf="!title()"></ng-content>
     </div>

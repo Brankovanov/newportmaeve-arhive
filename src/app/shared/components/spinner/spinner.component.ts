@@ -1,4 +1,4 @@
-import { Component, input } from '@angular/core';
+import { Component, computed, input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 type SpinnerVariant = 'circular' | 'dots' | 'bars';
@@ -24,6 +24,8 @@ type SpinnerColor = 'primary' | 'secondary';
   host: {
     role: 'status',
     'aria-live': 'polite',
+    '[attr.aria-label]': 'accessibleLabel()',
+    '[attr.aria-busy]': 'true',
     class: 'app-spinner',
   },
 })
@@ -42,4 +44,8 @@ export class SpinnerComponent {
 
   /** Optional ARIA label for accessibility */
   ariaLabel = input<string | null>(null);
+
+  protected readonly accessibleLabel = computed(() => {
+    return this.ariaLabel() ?? this.label() ?? 'Loading';
+  });
 }

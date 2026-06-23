@@ -28,6 +28,12 @@ type SkeletonRounded = 'none' | 'sm' | 'md' | 'lg' | 'full';
   styleUrls: ['./skeleton-loader.component.scss'],
   standalone: true,
   imports: [CommonModule],
+  host: {
+    role: 'status',
+    'aria-live': 'polite',
+    '[attr.aria-label]': 'ariaLabel()',
+    '[attr.aria-busy]': 'true',
+  },
 })
 export class SkeletonLoaderComponent {
   /** Skeleton loader variant/type */
@@ -47,6 +53,9 @@ export class SkeletonLoaderComponent {
 
   /** Optional CSS classes */
   class = input<string | null>(null);
+
+  /** Screen reader announcement for loading content */
+  ariaLabel = input('Loading content');
 
   /**
    * Generate array for list repetition

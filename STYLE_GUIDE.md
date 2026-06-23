@@ -240,6 +240,27 @@ Use utility classes for quick styling:
 
 ---
 
+## Accessibility Testing Checklist
+
+- Verify every interactive element is reachable with `Tab` and operable with keyboard only.
+- Confirm visible focus styles appear on links, buttons, tabs, modal controls, and skip links.
+- Ensure dialogs move focus into the modal on open and restore focus to the trigger on close.
+- Confirm tab interfaces support arrow key navigation plus `Home` and `End` shortcuts.
+- Validate loading indicators announce a useful status without exposing decorative shapes.
+- Review route-level pages and shared components with an AXE audit before release.
+- Re-check contrast for any new token or variant against WCAG AA before merging.
+
+## Accessibility Patterns
+
+- Use the `.sr-only` utility for supplementary screen-reader text that should not affect layout.
+- Add a skip link at the application shell level so keyboard users can jump directly to `<main>`.
+- Treat skeleton shapes as decorative with `aria-hidden` and announce loading on the component host.
+- Keep animated spinners exposed as a single status message through the host `role="status"`.
+- Use `aria-labelledby` and `aria-describedby` on dialogs, and trap focus while they are open.
+- Keep tab sets on `role="tablist"` and expose each tab with `role="tab"`, `aria-selected`, and keyboard navigation.
+
+---
+
 ## Color Maps
 
 ### Faction Colors
