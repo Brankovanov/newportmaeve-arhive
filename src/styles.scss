@@ -1,1 +1,6 @@
-/* You can add global styles to this file, and also import other style files */
+// ─────────────────────────────────────────────────────────────────────────────
+// Global Styles Entry Point
+// ─────────────────────────────────────────────────────────────────────────────
+// This file imports all global styles and design tokens.
+
+@use './styles/styles' as global;

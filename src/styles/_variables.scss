@@ -1,0 +1,241 @@
+// ─────────────────────────────────────────────────────────────────────────────
+// Newport Maeve Chronicles — Design Tokens
+// Extracted from newportmaeve.com + extended for the Angular rebuild
+//
+// Usage:
+//   @use 'variables' as v;
+//   color: v.$color-blood;
+//
+// Or import globally in angular.json styles[] and use as plain variables.
+// ─────────────────────────────────────────────────────────────────────────────
+
+
+// ─── COLOR PALETTE ───────────────────────────────────────────────────────────
+//
+// Source: sampled from the live site's visual identity —
+//   deep void backgrounds, aged brass, fog whites, blood red accent,
+//   slate mid-tones for text hierarchy.
+//
+// Naming convention: $color-{role}[-{variant}]
+
+// -- Backgrounds --
+$color-void:            #0a0a0a;   // deepest background — hero, full-bleed sections
+$color-pitch:           #111111;   // default page background
+$color-charcoal:        #1a1a1a;   // card / panel backgrounds
+$color-slate-dark:      #222222;   // elevated surfaces, nav bar
+$color-slate:           #2e2e2e;   // borders, dividers, input backgrounds
+$color-slate-light:     #3d3d3d;   // hover states on dark surfaces
+
+// -- Text --
+$color-fog:             #f0ece4;   // primary text — warm off-white, not pure white
+$color-fog-muted:       #b8b0a4;   // secondary / caption text
+$color-fog-dim:         #7a7269;   // placeholder, disabled text
+$color-fog-ghost:       #3f3b36;   // barely-visible divider text
+
+// -- Accent: Brass (primary brand accent) --
+$color-brass:           #c9a84c;   // primary accent — nav logo, active states, CTA borders
+$color-brass-light:     #e0c070;   // hover highlight on brass elements
+$color-brass-dark:      #9c7f36;   // pressed state, deep accent
+$color-brass-dim:       #5a4a20;   // subtle brass tint — section labels, underlines
+
+// -- Accent: Blood (danger, emphasis, vampire lore) --
+$color-blood:           #8b1a1a;   // crimson red — used sparingly for dramatic emphasis
+$color-blood-bright:    #c0392b;   // highlighted blood accent, hover
+$color-blood-dim:       #4a0e0e;   // deep red — background tint, alert states
+
+// -- Accent: Angelic (The Protector, divine elements) --
+$color-angelic:         #5b8dd9;   // cold blue — angelic faction, OneTrue references
+$color-angelic-glow:    #a8c8ff;   // glowing blue eye effect, energy fields
+
+// -- Overlays --
+$color-overlay-dark:    rgba(0, 0, 0, 0.72);   // modal backdrop, card hover scrim
+$color-overlay-mid:     rgba(0, 0, 0, 0.45);   // image overlays, section tints
+$color-overlay-light:   rgba(0, 0, 0, 0.20);   // subtle image dimming
+
+// -- Semantic aliases (map to palette above) --
+$color-bg:              $color-pitch;
+$color-bg-elevated:     $color-charcoal;
+$color-bg-sunken:       $color-void;
+$color-border:          $color-slate;
+$color-border-subtle:   $color-fog-ghost;
+$color-text:            $color-fog;
+$color-text-muted:      $color-fog-muted;
+$color-text-disabled:   $color-fog-dim;
+$color-accent:          $color-brass;
+$color-accent-hover:    $color-brass-light;
+$color-accent-active:   $color-brass-dark;
+$color-danger:          $color-blood-bright;
+$color-focus-ring:      $color-brass;
+
+
+// ─── TYPOGRAPHY ──────────────────────────────────────────────────────────────
+//
+// Display: Cinzel — period serif, evokes engraved stone and broadsheet print.
+//   Used exclusively for H1/H2 and the nav logo. Loaded from Google Fonts.
+// Body: Crimson Text — old-style text face, warm and readable at paragraph sizes.
+//   Used for all body copy, blockquotes, and character bios.
+// Mono/Utility: JetBrains Mono — labels, tags, stat numbers, lore codes.
+//   Used for stat counters, faction tags, section eyebrows.
+
+$font-display:    'Cinzel', 'Palatino Linotype', Georgia, serif;
+$font-body:       'Crimson Text', 'Georgia', 'Times New Roman', serif;
+$font-utility:    'JetBrains Mono', 'Consolas', 'Courier New', monospace;
+$font-sans:       'Inter', 'Segoe UI', system-ui, sans-serif; // nav, UI chrome only
+
+// -- Font sizes (fluid scale using clamp) --
+$fs-xs:           clamp(0.70rem, 1.2vw, 0.80rem);   // labels, captions
+$fs-sm:           clamp(0.85rem, 1.5vw, 0.95rem);   // tags, metadata
+$fs-base:         clamp(1.00rem, 1.8vw, 1.13rem);   // body paragraph
+$fs-md:           clamp(1.13rem, 2.0vw, 1.25rem);   // lead text, character taglines
+$fs-lg:           clamp(1.25rem, 2.5vw, 1.50rem);   // subheadings (H4/H3)
+$fs-xl:           clamp(1.50rem, 3.2vw, 2.00rem);   // H3 / section titles
+$fs-2xl:          clamp(2.00rem, 4.5vw, 3.00rem);   // H2 / section headings
+$fs-3xl:          clamp(2.75rem, 6.0vw, 4.50rem);   // H1 / hero headline
+$fs-display:      clamp(3.50rem, 8.0vw, 6.50rem);   // hero display — "The Newport Maeve Chronicles"
+
+// -- Font weights --
+$fw-regular:      400;
+$fw-medium:       500;
+$fw-semibold:     600;
+$fw-bold:         700;
+
+// -- Line heights --
+$lh-tight:        1.15;   // display, headings
+$lh-snug:         1.35;   // subheadings, character names
+$lh-base:         1.65;   // body copy
+$lh-loose:        1.85;   // blockquotes, long-form bios
+
+// -- Letter spacing --
+$ls-tight:        -0.02em;  // large display text
+$ls-normal:        0;
+$ls-wide:          0.08em;  // section eyebrows (e.g. "THE SERIES")
+$ls-wider:         0.18em;  // all-caps utility labels, faction tags
+
+
+// ─── SPACING SCALE ───────────────────────────────────────────────────────────
+// 4px base unit, powers-of-2 scale with named aliases
+
+$space-1:    0.25rem;   //  4px
+$space-2:    0.50rem;   //  8px
+$space-3:    0.75rem;   // 12px
+$space-4:    1.00rem;   // 16px
+$space-5:    1.25rem;   // 20px
+$space-6:    1.50rem;   // 24px
+$space-8:    2.00rem;   // 32px
+$space-10:   2.50rem;   // 40px
+$space-12:   3.00rem;   // 48px
+$space-16:   4.00rem;   // 64px
+$space-20:   5.00rem;   // 80px
+$space-24:   6.00rem;   // 96px
+$space-32:   8.00rem;   // 128px
+
+// -- Semantic aliases --
+$gap-xs:     $space-2;
+$gap-sm:     $space-4;
+$gap-md:     $space-8;
+$gap-lg:     $space-12;
+$gap-xl:     $space-20;
+$gap-section: $space-24;   // vertical padding between page sections
+
+
+// ─── LAYOUT ──────────────────────────────────────────────────────────────────
+
+$container-sm:    640px;
+$container-md:    768px;
+$container-lg:    1024px;
+$container-xl:    1280px;
+$container-2xl:   1440px;
+$container-max:   $container-xl;   // default max-width for content
+
+$grid-columns:    12;
+$grid-gutter:     $space-8;   // 32px default gutter
+
+
+// ─── SHAPE & BORDERS ─────────────────────────────────────────────────────────
+// The site uses very minimal rounding — nearly all sharp edges. Only
+// small interactive elements (tags, badges) get a slight radius.
+
+$radius-none:    0;
+$radius-sm:      2px;    // tags, badges
+$radius-md:      4px;    // buttons, input fields
+$radius-lg:      8px;    // cards (used sparingly)
+$radius-pill:    9999px; // icon buttons, avatar chips
+
+$border-width:          1px;
+$border-width-thick:    2px;
+$border-color:          $color-border;
+$border-color-accent:   $color-brass-dim;
+$border-style:          solid;
+
+
+// ─── SHADOWS & GLOWS ─────────────────────────────────────────────────────────
+
+// Elevation shadows (dark theme — shadows are barely visible; use glow instead)
+$shadow-sm:   0 1px 3px rgba(0, 0, 0, 0.5);
+$shadow-md:   0 4px 12px rgba(0, 0, 0, 0.6);
+$shadow-lg:   0 8px 32px rgba(0, 0, 0, 0.75);
+
+// Brand glows — used on hover states, active cards, focus rings
+$glow-brass:    0 0 12px rgba(201, 168, 76, 0.35);
+$glow-brass-lg: 0 0 28px rgba(201, 168, 76, 0.25);
+$glow-blood:    0 0 12px rgba(139, 26, 26, 0.45);
+$glow-angelic:  0 0 16px rgba(91, 141, 217, 0.40);
+
+
+// ─── TRANSITIONS ─────────────────────────────────────────────────────────────
+// The world moves deliberately. Nothing snaps.
+
+$ease-out-expo:   cubic-bezier(0.16, 1, 0.3, 1);
+$ease-in-out:     cubic-bezier(0.4, 0, 0.2, 1);
+$ease-reveal:     cubic-bezier(0.25, 0.46, 0.45, 0.94);
+
+$duration-fast:   150ms;
+$duration-base:   300ms;
+$duration-slow:   500ms;
+$duration-crawl:  800ms;   // page-level route transitions, hero reveals
+
+$transition-color:      color $duration-base $ease-in-out,
+                        background-color $duration-base $ease-in-out;
+$transition-border:     border-color $duration-base $ease-in-out;
+$transition-opacity:    opacity $duration-base $ease-in-out;
+$transition-transform:  transform $duration-base $ease-out-expo;
+$transition-glow:       box-shadow $duration-slow $ease-in-out;
+$transition-all:        all $duration-base $ease-in-out;
+
+
+// ─── Z-INDEX SCALE ───────────────────────────────────────────────────────────
+
+$z-below:      -1;
+$z-base:        0;
+$z-raised:     10;   // cards on hover
+$z-sticky:     20;   // sticky section headers
+$z-nav:        50;   // top navigation bar
+$z-overlay:    80;   // image overlays, character reveal scrims
+$z-modal:     100;   // character detail modal / lightbox
+$z-toast:     110;   // notification toasts
+
+
+// ─── FACTION COLOR MAP ───────────────────────────────────────────────────────
+// Used by CharacterCardComponent and district explorer to tint
+// faction badges and card accent lines.
+
+$faction-colors: (
+  'blood-blessed':       $color-blood,
+  'ironclad-consortium': $color-brass,
+  'onetrue':             $color-angelic,
+  'lower-rank-holy':     $color-angelic-glow,
+  'underground-network': $color-fog-dim,
+  'citizen':             $color-slate-light,
+);
+
+// ─── DISTRICT COLOR MAP ──────────────────────────────────────────────────────
+
+$district-colors: (
+  'market-district':     #c9a84c,   // brass — commerce
+  'industrial-district': #7a6a50,   // smoke-brown — industry
+  'northport-district':  #3d6b8a,   // harbour steel-blue
+  'living-district-b':   #5a6e4a,   // muted olive — parks & workers
+  'living-district-a':   #6a6a5a,   // urban grey-green
+  'luxury-district':     #d4af6a,   // pale gold — wealth
+  'military-base':       #4a4e5a,   // cold gunmetal
+);

@@ -1,0 +1,314 @@
+@use './variables' as v;
+
+// ─────────────────────────────────────────────────────────────────────────────
+// Newport Maeve Chronicles — Global Styles
+// ─────────────────────────────────────────────────────────────────────────────
+
+// -- Reset & Base Styles --
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: v.$font-body;
+  font-size: v.$fs-base;
+  line-height: v.$lh-base;
+  color: v.$color-text;
+  background-color: v.$color-bg;
+  background: radial-gradient(
+    circle at 50% 50%,
+    rgba(139, 26, 26, 0.08) 0%,
+    rgba(0, 0, 0, 0) 100%
+  ),
+  linear-gradient(180deg, v.$color-pitch 0%, v.$color-void 100%);
+  overflow-x: hidden;
+  transition: v.$transition-all;
+}
+
+// -- Typography Base --
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: v.$font-display;
+  font-weight: v.$fw-bold;
+  line-height: v.$lh-tight;
+  letter-spacing: v.$ls-tight;
+  margin-bottom: v.$space-4;
+}
+
+h1 {
+  font-size: v.$fs-3xl;
+}
+
+h2 {
+  font-size: v.$fs-2xl;
+}
+
+h3 {
+  font-size: v.$fs-xl;
+}
+
+h4 {
+  font-size: v.$fs-lg;
+}
+
+h5 {
+  font-size: v.$fs-md;
+}
+
+h6 {
+  font-size: v.$fs-sm;
+}
+
+p {
+  margin-bottom: v.$space-8;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+// -- Links --
+a {
+  color: v.$color-accent;
+  text-decoration: none;
+  transition: v.$transition-color;
+
+  &:hover {
+    color: v.$color-accent-hover;
+  }
+
+  &:focus-visible {
+    outline: 2px solid v.$color-focus-ring;
+    outline-offset: 2px;
+  }
+}
+
+// -- Lists --
+ul,
+ol {
+  margin-bottom: v.$space-8;
+  margin-left: v.$space-6;
+
+  li {
+    margin-bottom: v.$space-2;
+  }
+}
+
+// -- Code --
+code,
+pre {
+  font-family: v.$font-utility;
+  font-size: v.$fs-sm;
+  background-color: v.$color-bg-elevated;
+  border: 1px solid v.$color-border;
+  border-radius: v.$radius-md;
+  padding: v.$space-2 v.$space-4;
+}
+
+pre {
+  padding: v.$space-4;
+  overflow-x: auto;
+
+  code {
+    background-color: transparent;
+    border: none;
+    padding: 0;
+  }
+}
+
+// -- Blockquote --
+blockquote {
+  margin: v.$space-12 0;
+  padding-left: v.$space-6;
+  border-left: v.$border-width-thick solid v.$color-accent;
+  color: v.$color-text-muted;
+  font-style: italic;
+  line-height: v.$lh-loose;
+}
+
+// -- Horizontal Rule --
+hr {
+  border: none;
+  border-top: v.$border-width solid v.$color-border-subtle;
+  margin: v.$space-12 0;
+}
+
+// -- Utility Classes --
+
+// Display utilities
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+// Text utilities
+.text-primary {
+  color: v.$color-text;
+}
+
+.text-muted {
+  color: v.$color-text-muted;
+}
+
+.text-disabled {
+  color: v.$color-text-disabled;
+}
+
+.text-accent {
+  color: v.$color-accent;
+}
+
+.text-danger {
+  color: v.$color-danger;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.text-uppercase {
+  text-transform: uppercase;
+  letter-spacing: v.$ls-wider;
+}
+
+.font-display {
+  font-family: v.$font-display;
+}
+
+.font-body {
+  font-family: v.$font-body;
+}
+
+.font-utility {
+  font-family: v.$font-utility;
+}
+
+// Spacing utilities
+.mt-1 { margin-top: v.$space-1; }
+.mt-2 { margin-top: v.$space-2; }
+.mt-4 { margin-top: v.$space-4; }
+.mt-8 { margin-top: v.$space-8; }
+.mt-12 { margin-top: v.$space-12; }
+
+.mb-1 { margin-bottom: v.$space-1; }
+.mb-2 { margin-bottom: v.$space-2; }
+.mb-4 { margin-bottom: v.$space-4; }
+.mb-8 { margin-bottom: v.$space-8; }
+.mb-12 { margin-bottom: v.$space-12; }
+
+.p-4 { padding: v.$space-4; }
+.p-8 { padding: v.$space-8; }
+.p-12 { padding: v.$space-12; }
+
+.gap-md { gap: v.$gap-md; }
+.gap-lg { gap: v.$gap-lg; }
+
+// Flex utilities
+.flex {
+  display: flex;
+}
+
+.flex-col {
+  flex-direction: column;
+}
+
+.flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.flex-between {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+// Grid utilities
+.grid {
+  display: grid;
+}
+
+.grid-cols-2 {
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.grid-cols-3 {
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.grid-cols-4 {
+  grid-template-columns: repeat(4, 1fr);
+}
+
+// Visibility utilities
+.hidden {
+  display: none !important;
+}
+
+.invisible {
+  visibility: hidden;
+}
+
+// Background utilities
+.bg-elevated {
+  background-color: v.$color-bg-elevated;
+}
+
+.bg-accent {
+  background-color: v.$color-accent;
+}
+
+.bg-danger {
+  background-color: v.$color-danger;
+}
+
+// Opacity utilities
+.opacity-50 {
+  opacity: 0.5;
+}
+
+.opacity-75 {
+  opacity: 0.75;
+}
+
+// Transform utilities
+.scale-hover {
+  transition: v.$transition-transform;
+
+  &:hover {
+    transform: scale(1.05);
+  }
+}
+
+// Accessibility
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
