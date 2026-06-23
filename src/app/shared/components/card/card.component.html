@@ -1,0 +1,20 @@
+<div
+  class="card"
+  [class.card-no-border]="!bordered()"
+  [class.card-none]="elevation() === 'none'"
+  [class.card-sm]="elevation() === 'sm'"
+  [class.card-md]="elevation() === 'md'"
+  [class.card-lg]="elevation() === 'lg'"
+  [class.card-hover]="elevation() === 'hover'"
+  [class.card-p-none]="padding() === 'none'"
+  [class.card-p-sm]="padding() === 'sm'"
+  [class.card-p-md]="padding() === 'md'"
+  [class.card-p-lg]="padding() === 'lg'"
+  [class.card-rounded-none]="rounded() === 'none'"
+  [class.card-rounded-sm]="rounded() === 'sm'"
+  [class.card-rounded-md]="rounded() === 'md'"
+  [class.card-rounded-lg]="rounded() === 'lg'"
+  [ngClass]="class()"
+>
+  <ng-content></ng-content>
+</div>

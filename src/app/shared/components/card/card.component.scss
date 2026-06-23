@@ -1,0 +1,140 @@
+@use '../../../../styles/variables' as v;
+
+// ─────────────────────────────────────────────────────────────────────────────
+// Card Component Styles
+// ─────────────────────────────────────────────────────────────────────────────
+
+.card {
+  background-color: v.$color-bg-elevated;
+  border: v.$border-width solid v.$color-border;
+  border-radius: v.$radius-md;
+  transition: v.$transition-all;
+
+  // Default elevation is 'md'
+  box-shadow: v.$shadow-md;
+}
+
+// ─── ELEVATION VARIANTS ──────────────────────────────────────────────────────
+
+.card-none {
+  box-shadow: none;
+}
+
+.card-sm {
+  box-shadow: v.$shadow-sm;
+}
+
+.card-md {
+  box-shadow: v.$shadow-md;
+}
+
+.card-lg {
+  box-shadow: v.$shadow-lg;
+}
+
+.card-hover {
+  box-shadow: v.$shadow-md;
+
+  &:hover {
+    box-shadow: v.$glow-brass;
+    transform: translateY(-2px);
+    border-color: v.$color-accent;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    &:hover {
+      transform: none;
+    }
+  }
+}
+
+// ─── PADDING VARIANTS ───────────────────────────────────────────────────────
+
+.card-p-none {
+  padding: 0;
+}
+
+.card-p-sm {
+  padding: v.$space-4;
+}
+
+.card-p-md {
+  padding: v.$space-8;
+}
+
+.card-p-lg {
+  padding: v.$space-12;
+}
+
+// ─── BORDER RADIUS VARIANTS ─────────────────────────────────────────────────
+
+.card-rounded-none {
+  border-radius: v.$radius-none;
+}
+
+.card-rounded-sm {
+  border-radius: v.$radius-sm;
+}
+
+.card-rounded-md {
+  border-radius: v.$radius-md;
+}
+
+.card-rounded-lg {
+  border-radius: v.$radius-lg;
+}
+
+// ─── BORDER VARIANT ─────────────────────────────────────────────────────────
+
+.card-no-border {
+  border: none;
+}
+
+// ─── FOCUS STATES ───────────────────────────────────────────────────────────
+
+.card {
+  &:focus-within {
+    border-color: v.$color-accent;
+    box-shadow: v.$glow-brass;
+  }
+}
+
+// ─── RESPONSIVE ─────────────────────────────────────────────────────────────
+
+@media (max-width: 640px) {
+  .card-p-md {
+    padding: v.$space-6;
+  }
+
+  .card-p-lg {
+    padding: v.$space-8;
+  }
+}
+
+// ─── CONTENT STRUCTURE HELPERS ───────────────────────────────────────────────
+// These can be used within card content for semantic structure
+
+:host ::ng-deep .card-header {
+  border-bottom: v.$border-width solid v.$color-border-subtle;
+  margin-bottom: v.$space-6;
+  padding-bottom: v.$space-4;
+
+  h2,
+  h3,
+  h4 {
+    margin: 0;
+  }
+}
+
+:host ::ng-deep .card-body {
+  // Default body styling
+}
+
+:host ::ng-deep .card-footer {
+  border-top: v.$border-width solid v.$color-border-subtle;
+  margin-top: v.$space-6;
+  padding-top: v.$space-4;
+  display: flex;
+  gap: v.$gap-md;
+  align-items: center;
+}
