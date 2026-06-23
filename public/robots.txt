@@ -1,0 +1,31 @@
+# Newportmaeve Archives - Robots Configuration
+# Search engines are welcome to crawl and index all content
+
+User-agent: *
+Allow: /
+
+# Specific rules for common bots
+User-agent: Googlebot
+Allow: /
+Crawl-delay: 0
+
+User-agent: Bingbot
+Allow: /
+Crawl-delay: 1
+
+User-agent: Slurp
+Allow: /
+Crawl-delay: 1
+
+# Disallow access to sensitive paths
+Disallow: /.env
+Disallow: /.git
+Disallow: /node_modules
+Disallow: /.angular
+Disallow: /dist
+Disallow: /build
+
+# Specify sitemap location
+Sitemap: https://newportmaeve-archives.com/sitemap.xml
+Sitemap: https://newportmaeve-archives.com/sitemap-characters.xml
+Sitemap: https://newportmaeve-archives.com/sitemap-districts.xml

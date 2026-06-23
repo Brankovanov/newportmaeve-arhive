@@ -1,5 +1,6 @@
-import { Component, signal } from '@angular/core';
+import { Component, OnInit, inject, signal } from '@angular/core';
 import { RouterLink } from '@angular/router';
+import { MetaService } from '../../core/services/meta.service';
 
 interface CharacterCard {
   name: string;
@@ -14,7 +15,16 @@ interface CharacterCard {
   templateUrl: './characters.page.html',
   styleUrl: './characters.page.scss'
 })
-export class CharactersPage {
+export class CharactersPage implements OnInit {
+  private readonly meta = inject(MetaService);
+
+  ngOnInit(): void {
+    this.meta.setTitle('Characters | Newportmaeve Archives');
+    this.meta.setDescription('Meet the enigmatic characters of Newport Maeve - archivists, cartographers, and keepers of forgotten tales.');
+    this.meta.setOgTitle('Newportmaeve Characters');
+    this.meta.setOgDescription('Discover the characters shaping the chronicles of Newport Maeve.');
+    this.meta.setOgType('website');
+  }
   protected readonly activeReveal = signal<string | null>(null);
 
   protected readonly characters: CharacterCard[] = [

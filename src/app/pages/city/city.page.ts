@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { RouterLink } from '@angular/router';
+import { MetaService } from '../../core/services/meta.service';
 
 interface District {
   name: string;
@@ -13,7 +14,16 @@ interface District {
   templateUrl: './city.page.html',
   styleUrl: './city.page.scss'
 })
-export class CityPage {
+export class CityPage implements OnInit {
+  private readonly meta = inject(MetaService);
+
+  ngOnInit(): void {
+    this.meta.setTitle('City Districts | Newportmaeve Archives');
+    this.meta.setDescription('Explore the districts and wards of Newport Maeve - from Saltmarket Harbor to the Glass Meridian skyline.');
+    this.meta.setOgTitle('Newport Maeve Districts');
+    this.meta.setOgDescription('Discover the unique districts that make up the city of Newport Maeve.');
+    this.meta.setOgType('website');
+  }
   protected readonly districts: District[] = [
     {
       name: 'Saltmarket Ward',
