@@ -1,0 +1,42 @@
+.error-shell {
+  max-width: 700px;
+  margin: 3rem auto;
+  padding: 1.25rem;
+  border-radius: 1rem;
+  border: 1px solid rgb(251 191 36 / 40%);
+  background: rgb(30 41 59 / 55%);
+}
+
+.code {
+  margin: 0;
+  font-size: 0.9rem;
+  letter-spacing: 0.1em;
+  color: #fde68a;
+}
+
+h1 {
+  margin: 0.35rem 0 0.5rem;
+}
+
+.actions {
+  margin-top: 1rem;
+  display: flex;
+  gap: 0.7rem;
+  flex-wrap: wrap;
+}
+
+a {
+  text-decoration: none;
+  border-radius: 999px;
+  padding: 0.5rem 0.9rem;
+}
+
+.primary {
+  color: #111827;
+  background: #facc15;
+}
+
+.secondary {
+  color: #fef08a;
+  border: 1px solid rgb(253 224 71 / 45%);
+}

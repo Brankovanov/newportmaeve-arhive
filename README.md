@@ -87,6 +87,8 @@ newportmaeve-achives/
 | `/city/:district` | Individual district deep-dive page |
 | `/author` | Dean Jordanov about section |
 | `/connect` | External links (YouTube, Wiki, DeviantArt, Facebook) |
+| `/404` | Dedicated not-found page |
+| `/error` | Runtime error recovery page |
 
 ---
 

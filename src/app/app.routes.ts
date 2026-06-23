@@ -46,7 +46,17 @@ export const routes: Routes = [
 			import('./pages/connect/connect.page').then((m) => m.ConnectPage)
 	},
 	{
+		path: 'error',
+		loadComponent: () =>
+			import('./pages/error/error.page').then((m) => m.ErrorPage)
+	},
+	{
+		path: '404',
+		loadComponent: () =>
+			import('./pages/not-found/not-found.page').then((m) => m.NotFoundPage)
+	},
+	{
 		path: '**',
-		redirectTo: ''
+		redirectTo: '404'
 	}
 ];
