@@ -23,12 +23,24 @@ You are an expert in TypeScript, Angular, and scalable web application developme
 - It MUST pass all AXE checks.
 - It MUST follow all WCAG AA minimums, including focus management, color contrast, and ARIA attributes.
 
+## SEO Optimization Requirements
+
+- Implement server-side rendering (SSR) for all pages to ensure search engine crawlability
+- Use semantic HTML elements (`<header>`, `<main>`, `<article>`, `<nav>`, etc.) for proper content structure
+- Optimize meta tags: title, description, canonical URLs, and Open Graph tags
+- Use `NgOptimizedImage` for all static images with proper `alt` attributes
+- Ensure all text content has sufficient contrast and is readable without JavaScript
+- Implement structured data (Schema.org) using JSON-LD format for rich snippets
+- Optimize Core Web Vitals: Largest Contentful Paint (LCP), First Input Delay (FID), and Cumulative Layout Shift (CLS)
+- Create an XML sitemap and robots.txt for crawlability
+- Use descriptive, keyword-rich URLs and ensure proper internal linking structure
+
 ### Components
 
 - Keep components small and focused on a single responsibility
 - Use `input()` and `output()` functions instead of decorators
 - Use `computed()` for derived state
-- Prefer inline templates for small components
+- Use separate template files (external templates) for all components
 - Prefer Signal Forms (`@angular/forms/signals`) for new forms. They are stable in Angular v22+ and provide signal-based state, type-safe field access, and schema-based validation
 - When not using Signal Forms, prefer Reactive forms instead of Template-driven ones
 - Do NOT use `ngClass`, use `class` bindings instead
