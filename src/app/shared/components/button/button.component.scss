@@ -1,0 +1,166 @@
+@use '../../../../styles/variables' as v;
+
+// ─────────────────────────────────────────────────────────────────────────────
+// Button Component Styles
+// ─────────────────────────────────────────────────────────────────────────────
+
+button {
+  font-family: v.$font-sans;
+  font-weight: v.$fw-semibold;
+  border: none;
+  border-radius: v.$radius-md;
+  cursor: pointer;
+  transition: v.$transition-all;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  white-space: nowrap;
+  user-select: none;
+
+  // Remove default button styling
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+
+  // Focus ring for accessibility
+  &:focus-visible {
+    outline: 2px solid v.$color-focus-ring;
+    outline-offset: 2px;
+  }
+
+  // Disabled state
+  &:disabled,
+  &.btn-disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    pointer-events: none;
+  }
+
+  // Active/Pressed state
+  &:active:not(:disabled) {
+    transform: scale(0.98);
+  }
+}
+
+// ─── PRIMARY VARIANT (Brass Accent) ──────────────────────────────────────────
+.btn-primary {
+  background-color: v.$color-accent;
+  color: v.$color-bg;
+  border: v.$border-width solid v.$color-accent;
+  box-shadow: v.$glow-brass;
+
+  &:hover:not(:disabled) {
+    background-color: v.$color-accent-hover;
+    border-color: v.$color-accent-hover;
+    box-shadow: v.$glow-brass-lg;
+    transform: translateY(-1px);
+  }
+
+  &:active:not(:disabled) {
+    background-color: v.$color-accent-active;
+    border-color: v.$color-accent-active;
+    box-shadow: v.$glow-brass;
+  }
+}
+
+// ─── SECONDARY VARIANT (Subtle/Outline) ──────────────────────────────────────
+.btn-secondary {
+  background-color: transparent;
+  color: v.$color-text;
+  border: v.$border-width solid v.$color-border;
+
+  &:hover:not(:disabled) {
+    background-color: v.$color-bg-elevated;
+    border-color: v.$color-accent;
+    color: v.$color-accent;
+    box-shadow: v.$glow-brass;
+  }
+
+  &:active:not(:disabled) {
+    background-color: v.$color-charcoal;
+    box-shadow: v.$glow-brass;
+  }
+}
+
+// ─── TERTIARY VARIANT (Danger/Destructive) ───────────────────────────────────
+.btn-tertiary {
+  background-color: transparent;
+  color: v.$color-danger;
+  border: v.$border-width solid v.$color-danger;
+
+  &:hover:not(:disabled) {
+    background-color: v.$color-blood-dim;
+    border-color: v.$color-danger;
+    box-shadow: v.$glow-blood;
+  }
+
+  &:active:not(:disabled) {
+    background-color: v.$color-blood;
+    color: v.$color-fog;
+    box-shadow: v.$glow-blood;
+  }
+}
+
+// ─── SIZE VARIANTS ───────────────────────────────────────────────────────────
+
+.btn-sm {
+  font-size: v.$fs-sm;
+  padding: v.$space-2 v.$space-4;
+  min-height: 32px;
+  min-width: 32px;
+  gap: v.$space-1;
+}
+
+.btn-md {
+  font-size: v.$fs-base;
+  padding: v.$space-3 v.$space-6;
+  min-height: 40px;
+  min-width: 40px;
+  gap: v.$space-2;
+}
+
+.btn-lg {
+  font-size: v.$fs-md;
+  padding: v.$space-4 v.$space-8;
+  min-height: 48px;
+  min-width: 48px;
+  gap: v.$space-2;
+}
+
+// ─── RESPONSIVE ──────────────────────────────────────────────────────────────
+
+@media (max-width: 640px) {
+  button {
+    font-size: v.$fs-sm;
+    padding: v.$space-3 v.$space-5;
+  }
+}
+
+// ─── ACCESSIBILITY ───────────────────────────────────────────────────────────
+
+// High contrast mode support
+@media (prefers-contrast: more) {
+  .btn-primary {
+    border: v.$border-width-thick solid v.$color-bg;
+  }
+
+  .btn-secondary,
+  .btn-tertiary {
+    border-width: v.$border-width-thick;
+  }
+}
+
+// Respect reduced motion
+@media (prefers-reduced-motion: reduce) {
+  button {
+    transition: none;
+
+    &:hover:not(:disabled) {
+      transform: none;
+    }
+
+    &:active:not(:disabled) {
+      transform: none;
+    }
+  }
+}

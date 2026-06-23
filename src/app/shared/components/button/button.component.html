@@ -1,0 +1,15 @@
+<button
+  [type]="type()"
+  [disabled]="disabled()"
+  [attr.aria-label]="ariaLabel()"
+  [class.btn-primary]="variant() === 'primary'"
+  [class.btn-secondary]="variant() === 'secondary'"
+  [class.btn-tertiary]="variant() === 'tertiary'"
+  [class.btn-sm]="size() === 'sm'"
+  [class.btn-md]="size() === 'md'"
+  [class.btn-lg]="size() === 'lg'"
+  [class.btn-disabled]="disabled()"
+  (click)="onButtonClick()"
+>
+  <ng-content></ng-content>
+</button>
