@@ -1,0 +1,242 @@
+@use '../../../../styles/variables' as v;
+
+// ─────────────────────────────────────────────────────────────────────────────
+// Modal Component Styles
+// ─────────────────────────────────────────────────────────────────────────────
+
+.modal-backdrop {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: v.$color-overlay-dark;
+  opacity: 0;
+  pointer-events: none;
+  z-index: v.$z-modal;
+  transition: opacity v.$duration-base v.$ease-in-out;
+  padding: v.$space-4;
+
+  &.modal-backdrop-visible {
+    opacity: 1;
+    pointer-events: auto;
+  }
+}
+
+// ─── MODAL CONTAINER ─────────────────────────────────────────────────────────
+
+.modal-container {
+  background-color: v.$color-bg-elevated;
+  border: v.$border-width solid v.$color-border;
+  border-radius: v.$radius-lg;
+  box-shadow: v.$shadow-lg;
+  max-height: 90vh;
+  overflow-y: auto;
+  transform: scale(0.95);
+  opacity: 0;
+  transition: opacity v.$duration-base v.$ease-reveal,
+              transform v.$duration-base v.$ease-reveal;
+
+  .modal-backdrop-visible & {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  // Focus styles for accessibility
+  &:focus-visible {
+    outline: 2px solid v.$color-focus-ring;
+    outline-offset: 2px;
+  }
+}
+
+// ─── SIZE VARIANTS ───────────────────────────────────────────────────────────
+
+.modal-sm {
+  width: 100%;
+  max-width: 384px; // 32rem
+}
+
+.modal-md {
+  width: 100%;
+  max-width: 512px; // 42rem
+}
+
+.modal-lg {
+  width: 100%;
+  max-width: 640px; // 53rem
+}
+
+.modal-xl {
+  width: 100%;
+  max-width: 768px; // 64rem
+}
+
+// ─── HEADER ──────────────────────────────────────────────────────────────────
+
+.modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: v.$gap-md;
+  border-bottom: v.$border-width solid v.$color-border-subtle;
+  padding: v.$space-6;
+
+  h2 {
+    margin: 0;
+    flex: 1;
+  }
+}
+
+.modal-title {
+  font-family: v.$font-display;
+  font-size: v.$fs-xl;
+  font-weight: v.$fw-bold;
+  color: v.$color-text;
+}
+
+.modal-close-btn {
+  background: none;
+  border: none;
+  font-size: 2rem;
+  color: v.$color-text-muted;
+  cursor: pointer;
+  padding: 0;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: v.$radius-md;
+  transition: v.$transition-all;
+  flex-shrink: 0;
+
+  &:hover {
+    background-color: v.$color-slate-light;
+    color: v.$color-text;
+  }
+
+  &:focus-visible {
+    outline: 2px solid v.$color-focus-ring;
+    outline-offset: 2px;
+  }
+
+  &:active {
+    transform: scale(0.95);
+  }
+}
+
+// ─── BODY ────────────────────────────────────────────────────────────────────
+
+.modal-body {
+  padding: v.$space-6;
+  color: v.$color-text;
+  line-height: v.$lh-base;
+
+  p {
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+}
+
+// ─── FOOTER ──────────────────────────────────────────────────────────────────
+
+.modal-footer {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: v.$gap-md;
+  border-top: v.$border-width solid v.$color-border-subtle;
+  padding: v.$space-6;
+  flex-wrap: wrap;
+}
+
+// ─── RESPONSIVE ──────────────────────────────────────────────────────────────
+
+@media (max-width: 640px) {
+  .modal-container {
+    max-height: calc(100vh - v.$space-8);
+  }
+
+  .modal-sm,
+  .modal-md,
+  .modal-lg,
+  .modal-xl {
+    max-width: calc(100% - v.$space-8);
+  }
+
+  .modal-header {
+    padding: v.$space-4;
+  }
+
+  .modal-body {
+    padding: v.$space-4;
+  }
+
+  .modal-footer {
+    padding: v.$space-4;
+    flex-direction: column-reverse;
+
+    button {
+      width: 100%;
+    }
+  }
+}
+
+// ─── ACCESSIBILITY ───────────────────────────────────────────────────────────
+
+// High contrast mode
+@media (prefers-contrast: more) {
+  .modal-container {
+    border-width: v.$border-width-thick;
+  }
+
+  .modal-close-btn {
+    border: v.$border-width solid transparent;
+
+    &:hover {
+      border-color: v.$color-accent;
+    }
+  }
+}
+
+// Reduced motion
+@media (prefers-reduced-motion: reduce) {
+  .modal-backdrop {
+    transition: none;
+  }
+
+  .modal-container {
+    transition: none;
+    transform: scale(1);
+    opacity: 1;
+  }
+
+  .modal-close-btn:active {
+    transform: none;
+  }
+}
+
+// ─── SCROLLBAR STYLING ──────────────────────────────────────────────────────
+
+.modal-container {
+  scrollbar-width: thin;
+  scrollbar-color: v.$color-slate v.$color-bg;
+
+  &::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: v.$color-bg;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: v.$color-slate;
+    border-radius: v.$radius-md;
+
+    &:hover {
+      background: v.$color-slate-light;
+    }
+  }
+}

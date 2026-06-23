@@ -1,0 +1,49 @@
+<!-- Modal Backdrop -->
+<div
+  *ngIf="isOpen()"
+  class="modal-backdrop"
+  [class.modal-backdrop-visible]="isOpen()"
+  (click)="onBackdropClick($event)"
+  role="presentation"
+>
+  <!-- Modal Content -->
+  <div
+    class="modal-container"
+    [class.modal-sm]="size() === 'sm'"
+    [class.modal-md]="size() === 'md'"
+    [class.modal-lg]="size() === 'lg'"
+    [class.modal-xl]="size() === 'xl'"
+    role="dialog"
+    [attr.aria-modal]="isOpen()"
+    [attr.aria-labelledby]="title() ? 'modal-title' : null"
+    #modalContent
+    tabindex="-1"
+  >
+    <!-- Modal Header -->
+    <div class="modal-header" *ngIf="title()">
+      <h2 id="modal-title" class="modal-title">{{ title() }}</h2>
+      <button
+        type="button"
+        class="modal-close-btn"
+        (click)="close()"
+        aria-label="Close modal"
+      >
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+
+    <!-- Modal Body (Content Projection) -->
+    <div class="modal-body">
+      <ng-content select=".modal-body"></ng-content>
+      <ng-content *ngIf="!title()"></ng-content>
+    </div>
+
+    <!-- Modal Footer (Content Projection) -->
+    <div class="modal-footer" *ngIf="contentHasFooter()">
+      <ng-content select=".modal-footer"></ng-content>
+    </div>
+  </div>
+</div>
+
+<!-- Helper template to check if footer content exists -->
+<ng-template #emptyTemplate></ng-template>
