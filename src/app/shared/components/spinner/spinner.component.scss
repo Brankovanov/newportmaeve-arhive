@@ -1,0 +1,280 @@
+@use '../../../../styles/variables' as v;
+
+.spinner-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: v.$gap-sm;
+
+  // Size variants
+  &.spinner-sm {
+    width: 2.5rem; // 40px
+    height: 2.5rem;
+    font-size: v.$fs-xs;
+
+    .spinner-circular {
+      width: 2.5rem;
+      height: 2.5rem;
+
+      .spinner-svg {
+        width: 100%;
+        height: 100%;
+      }
+    }
+
+    .spinner-dots {
+      gap: v.$gap-xs;
+
+      .dot {
+        width: 0.5rem;
+        height: 0.5rem;
+      }
+    }
+
+    .spinner-bars {
+      gap: v.$gap-xs;
+
+      .bar {
+        width: 0.25rem;
+        height: 1.75rem;
+      }
+    }
+  }
+
+  &.spinner-md {
+    width: 3rem; // 48px
+    height: 3rem;
+    font-size: v.$fs-sm;
+
+    .spinner-circular {
+      width: 3rem;
+      height: 3rem;
+
+      .spinner-svg {
+        width: 100%;
+        height: 100%;
+      }
+    }
+
+    .spinner-dots {
+      gap: v.$gap-sm;
+
+      .dot {
+        width: 0.625rem;
+        height: 0.625rem;
+      }
+    }
+
+    .spinner-bars {
+      gap: v.$gap-sm;
+
+      .bar {
+        width: 0.375rem;
+        height: 2rem;
+      }
+    }
+  }
+
+  &.spinner-lg {
+    width: 4rem; // 64px
+    height: 4rem;
+    font-size: v.$fs-base;
+
+    .spinner-circular {
+      width: 4rem;
+      height: 4rem;
+
+      .spinner-svg {
+        width: 100%;
+        height: 100%;
+      }
+    }
+
+    .spinner-dots {
+      gap: v.$gap-md;
+
+      .dot {
+        width: 0.75rem;
+        height: 0.75rem;
+      }
+    }
+
+    .spinner-bars {
+      gap: v.$gap-md;
+
+      .bar {
+        width: 0.5rem;
+        height: 2.25rem;
+      }
+    }
+  }
+
+  // Color variants
+  &.spinner-primary {
+    .spinner-circle {
+      stroke: v.$color-accent;
+    }
+
+    .dot {
+      background-color: v.$color-accent;
+    }
+
+    .bar {
+      background-color: v.$color-accent;
+    }
+  }
+
+  &.spinner-secondary {
+    .spinner-circle {
+      stroke: v.$color-text;
+    }
+
+    .dot {
+      background-color: v.$color-text;
+    }
+
+    .bar {
+      background-color: v.$color-text;
+    }
+  }
+}
+
+// Circular spinner animation
+.spinner-circular {
+  position: relative;
+
+  .spinner-svg {
+    filter: drop-shadow(0 0 0.5rem var(--spinner-glow, transparent));
+  }
+}
+
+.spinner-circle {
+  fill: none;
+  stroke-width: 3;
+  stroke-linecap: round;
+  animation: spin 1.2s linear infinite;
+  transform-origin: 50% 50%;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+// Dots spinner animation
+.spinner-dots {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.dot {
+  border-radius: 50%;
+  animation: bounce-dots 1.4s infinite ease-in-out both;
+
+  &:nth-child(1) {
+    animation-delay: -0.32s;
+  }
+
+  &:nth-child(2) {
+    animation-delay: -0.16s;
+  }
+
+  &:nth-child(3) {
+    animation-delay: 0s;
+  }
+}
+
+@keyframes bounce-dots {
+  0%,
+  80%,
+  100% {
+    opacity: 0.6;
+    transform: scale(0.8);
+  }
+  40% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+// Bars spinner animation
+.spinner-bars {
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+}
+
+.bar {
+  border-radius: v.$radius-sm;
+  animation: bounce-bars 1.2s ease-in-out infinite;
+
+  &:nth-child(1) {
+    animation-delay: -0.6s;
+  }
+
+  &:nth-child(2) {
+    animation-delay: -0.45s;
+  }
+
+  &:nth-child(3) {
+    animation-delay: -0.3s;
+  }
+
+  &:nth-child(4) {
+    animation-delay: -0.15s;
+  }
+
+  &:nth-child(5) {
+    animation-delay: 0s;
+  }
+}
+
+@keyframes bounce-bars {
+  0%,
+  100% {
+    opacity: 0.6;
+    transform: scaleY(0.6);
+  }
+  50% {
+    opacity: 1;
+    transform: scaleY(1);
+  }
+}
+
+// Label styling
+.spinner-label {
+  margin: 0;
+  font-size: inherit;
+  color: v.$color-text;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  max-width: 100%;
+}
+
+// Accessibility
+@media (prefers-reduced-motion: reduce) {
+  .spinner-circle,
+  .dot,
+  .bar {
+    animation: none;
+    opacity: 1;
+  }
+}
+
+// Responsive adjustments
+@media (max-width: 768px) {
+  .spinner-container {
+    gap: v.$gap-xs;
+  }
+
+  .spinner-label {
+    font-size: v.$fs-xs;
+  }
+}
+

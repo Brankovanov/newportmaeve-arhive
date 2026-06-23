@@ -1,0 +1,43 @@
+<div
+  class="spinner-container"
+  [class.spinner-sm]="size() === 'sm'"
+  [class.spinner-md]="size() === 'md'"
+  [class.spinner-lg]="size() === 'lg'"
+  [class.spinner-primary]="color() === 'primary'"
+  [class.spinner-secondary]="color() === 'secondary'"
+  [attr.aria-label]="ariaLabel()"
+>
+  <!-- Circular spinner -->
+  @if (variant() === 'circular') {
+    <div class="spinner-circular">
+      <svg class="spinner-svg" viewBox="0 0 50 50">
+        <circle class="spinner-circle" cx="25" cy="25" r="20"></circle>
+      </svg>
+    </div>
+  }
+
+  <!-- Dots spinner -->
+  @if (variant() === 'dots') {
+    <div class="spinner-dots">
+      <div class="dot"></div>
+      <div class="dot"></div>
+      <div class="dot"></div>
+    </div>
+  }
+
+  <!-- Bars spinner -->
+  @if (variant() === 'bars') {
+    <div class="spinner-bars">
+      <div class="bar"></div>
+      <div class="bar"></div>
+      <div class="bar"></div>
+      <div class="bar"></div>
+      <div class="bar"></div>
+    </div>
+  }
+
+  <!-- Optional label -->
+  @if (label()) {
+    <p class="spinner-label">{{ label() }}</p>
+  }
+</div>
