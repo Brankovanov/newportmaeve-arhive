@@ -1,0 +1,18 @@
+@if (hasTrail()) {
+  <nav class="breadcrumbs" aria-label="Breadcrumb">
+    <ol itemscope itemtype="https://schema.org/BreadcrumbList">
+      @for (crumb of breadcrumbs(); track crumb.url; let i = $index) {
+        <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+          @if (i < breadcrumbs().length - 1) {
+            <a [routerLink]="crumb.url" itemprop="item">
+              <span itemprop="name">{{ crumb.label }}</span>
+            </a>
+          } @else {
+            <span itemprop="name" aria-current="page">{{ crumb.label }}</span>
+          }
+          <meta itemprop="position" [content]="(i + 1).toString()" />
+        </li>
+      }
+    </ol>
+  </nav>
+}

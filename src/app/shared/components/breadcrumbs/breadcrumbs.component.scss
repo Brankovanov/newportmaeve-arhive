@@ -1,0 +1,39 @@
+.breadcrumbs {
+  margin: 0.75rem 0 1rem;
+}
+
+ol {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+  align-items: center;
+}
+
+li {
+  display: inline-flex;
+  align-items: center;
+  color: #cbd5e1;
+}
+
+li + li::before {
+  content: '/';
+  margin-right: 0.45rem;
+  color: #94a3b8;
+}
+
+a {
+  color: #93c5fd;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+[aria-current='page'] {
+  color: #f8fafc;
+  font-weight: 600;
+}
