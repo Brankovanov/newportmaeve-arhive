@@ -87,28 +87,28 @@
 ## Phase 3: Static Content Architecture (Weeks 3-4)
 
 ### Content Model & JSON Structure
-- [ ] Define JSON schemas/interfaces for all content domains (characters, city, districts, author, connect)
-- [ ] Create central `src/app/core/content` folder for content models and utilities
-- [ ] Create typed data loaders for local JSON files in `public/` or `src/assets/`
-- [ ] Add runtime guards/validation for malformed JSON data
-- [ ] Create slug-index maps for fast route lookups (character and district detail pages)
-- [ ] Document JSON authoring rules (required fields, slug format, image references)
+- [x] Define JSON schemas/interfaces for all content domains (characters, city, districts, author, connect)
+- [x] Create central `src/app/core/content` folder for content models and utilities
+- [x] Create typed data loaders for local JSON files in `public/` or `src/assets/`
+- [x] Add runtime guards/validation for malformed JSON data
+- [x] Create slug-index maps for fast route lookups (character and district detail pages)
+- [x] Document JSON authoring rules (required fields, slug format, image references)
 
 ### Content Delivery (No Backend)
-- [ ] Replace API-oriented services with static content services
-- [ ] Ensure all pages read from predefined JSON files only
-- [ ] Implement graceful fallback for missing content records
-- [ ] Add shared empty/error display for content-not-found states
-- [ ] Ensure SSR renders static content correctly for all routes
+- [x] Replace API-oriented services with static content services
+- [x] Ensure all pages read from predefined JSON files only
+- [x] Implement graceful fallback for missing content records
+- [x] Add shared empty/error display for content-not-found states
+- [x] Ensure SSR renders static content correctly for all routes
 
 ### Asset Strategy (Images & Media)
-- [ ] Define folder convention for image assets (`public/images/...`)
-- [ ] Map JSON image keys to local asset paths
-- [ ] Implement `NgOptimizedImage` for all static content images
-- [ ] Add image metadata rules (alt text, dimensions, optional captions)
-- [ ] Add default/fallback image handling for missing assets
+- [x] Define folder convention for image assets (`public/images/...`)
+- [x] Map JSON image keys to local asset paths
+- [x] Implement `NgOptimizedImage` for all static content images
+- [x] Add image metadata rules (alt text, dimensions, optional captions)
+- [x] Add default/fallback image handling for missing assets
 
-**Subtotal Phase 3:** 0/16 tasks
+**Subtotal Phase 3:** 16/16 tasks ✅ **PHASE 3 COMPLETE**
 
 ---
 
