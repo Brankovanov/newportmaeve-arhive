@@ -41,6 +41,18 @@ Newportmaeve Archives aims to provide a comprehensive, user-friendly digital arc
 newportmaeve-achives/
 ├── src/
 │   ├── app/
+│   │   ├── shared/
+│   │   │   ├── components/
+│   │   │   │   ├── button/
+│   │   │   │   ├── card/
+│   │   │   │   ├── breadcrumbs/
+│   │   │   │   ├── footer/
+│   │   │   │   ├── header-navigation/
+│   │   │   │   ├── modal/
+│   │   │   │   ├── sidebar-menu/
+│   │   │   │   ├── skeleton-loader/
+│   │   │   │   ├── spinner/
+│   │   │   │   └── tabs/
 │   │   ├── app.ts                 # Root component
 │   │   ├── app.html               # Root template
 │   │   ├── app.scss               # Root styles
@@ -59,8 +71,9 @@ newportmaeve-achives/
 ├── tsconfig.json                  # TypeScript configuration
 ├── package.json                   # Dependencies
 ├── DEVELOPMENT_CHECKLIST.md       # Development tasks
-├── DEVELOPMENT.md                 # Architecture & setup (TODO)
-├── CONTRIBUTING.md                # Contribution guidelines (TODO)
+├── ARCHITECTURE.md                # Architecture guide
+├── DEVELOPMENT_SETUP.md           # Local setup guide
+├── CONTRIBUTING.md                # Contribution guidelines
 └── README.md                      # This file
 ```
 
@@ -193,6 +206,7 @@ This project enforces strict development standards. See [CLAUDE.md](./.claude/CL
 - ✅ Use **external stylesheets** (separate .scss files)
 - ✅ One component per file
 - ✅ Use `computed()` for derived state
+- ✅ Shared UI components currently include button, card, breadcrumbs, footer, header navigation, modal, sidebar menu, skeleton loader, spinner, and tabs
 
 ### Forms
 
@@ -339,7 +353,9 @@ Please read [CONTRIBUTING.md](./CONTRIBUTING.md) before submitting pull requests
 
 ## 📊 Project Status
 
-### Current Phase: **Phase 1 - Foundation & Core Infrastructure**
+### Current Phase: **Phase 2 - UI/UX & Design System**
+
+**Progress:** 34/187 tasks complete (18.2%)
 
 **Progress:** 9/187 tasks complete (4.8%)
 

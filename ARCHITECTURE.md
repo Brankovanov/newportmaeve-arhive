@@ -92,8 +92,14 @@ newportmaeve-achives/
 │   │   │   ├── components/
 │   │   │   │   ├── button/
 │   │   │   │   ├── card/
+│   │   │   │   ├── breadcrumbs/
+│   │   │   │   ├── footer/
+│   │   │   │   ├── header-navigation/
 │   │   │   │   ├── modal/
-│   │   │   │   └── navigation/
+│   │   │   │   ├── sidebar-menu/
+│   │   │   │   ├── skeleton-loader/
+│   │   │   │   ├── spinner/
+│   │   │   │   └── tabs/
 │   │   │   ├── pipes/
 │   │   │   │   ├── safe-html.pipe.ts
 │   │   │   │   └── date-format.pipe.ts
@@ -270,17 +276,17 @@ export class ArchiveListComponent {
 ### Component Hierarchy
 
 ```
-App (Root)
-├── Header (Navigation)
+App Shell (Root)
+├── Header Navigation
 ├── Main Content
-│   ├── Feature (Lazy-loaded)
-│   │   ├── Container (Smart)
-│   │   │   ├── Presentational
-│   │   │   ├── Presentational
-│   │   │   └── Presentational
-│   │   └── Container (Smart)
-│   │       └── Presentational
+│   ├── Breadcrumbs
 │   └── Feature (Lazy-loaded)
+│       ├── Container (Smart)
+│       │   ├── Presentational
+│       │   ├── Presentational
+│       │   └── Presentational
+│       └── Container (Smart)
+│           └── Presentational
 └── Footer
 ```
 
@@ -442,6 +448,18 @@ Current implementation in `src/app/app.routes.ts` uses lazy-loaded standalone pa
 | `**` | Fallback redirect to `/` | redirect |
 
 Server-side rendering route strategy in `src/app/app.routes.server.ts` is configured as `RenderMode.Server` to support dynamic parameterized routes without prerender param manifests.
+
+### Shared Navigation Components
+
+The application shell currently composes the primary navigation and supporting navigation UI from shared standalone components:
+
+- `header-navigation` for the sticky global header and primary route links
+- `breadcrumbs` for route-aware location context and SEO-friendly trails
+- `sidebar-menu` for sectioned archive navigation in future feature screens
+- `tabs` for route-backed or local tabbed views
+- `footer` for site-wide secondary links and metadata
+
+The shared loading and dialog primitives live alongside them in `src/app/shared/components/` and currently include `button`, `card`, `modal`, `spinner`, `skeleton-loader`, and `breadcrumbs`.
 
 ### Lazy Loading Benefits
 

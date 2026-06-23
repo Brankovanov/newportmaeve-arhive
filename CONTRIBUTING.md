@@ -537,7 +537,7 @@ Click "[New Issue](https://github.com/Brankovanov/newportmaeve-arhive/issues/new
 
 - 💬 **Discussions**: Use GitHub Discussions
 - 📧 **Issues**: Create a GitHub issue with `[question]` label
-- 📖 **Docs**: Check [DEVELOPMENT.md](./DEVELOPMENT.md)
+- 📖 **Docs**: Check [README.md](./README.md), [ARCHITECTURE.md](./ARCHITECTURE.md), and [DEVELOPMENT_SETUP.md](./DEVELOPMENT_SETUP.md)
 
 ---
 
