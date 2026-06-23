@@ -4,6 +4,12 @@ import { Injectable } from '@angular/core';
  * FontService handles web font loading, checking, and fallback logic.
  * While most font loading is handled by CSS @font-face declarations,
  * this service provides programmatic control when needed.
+ *
+ * Available fonts (all variable format):
+ * - Cinzel: Variable font from public/fonts/cinzel/ (TTF, weight axis 100-900)
+ * - Crimson Text: Full family from public/fonts/crimson-text/ (TTF, weights 400-700 + italics)
+ * - JetBrains Mono: Variable font from public/fonts/jetbrains-mono/ (TTF, weight axis + italics)
+ * - Inter: Variable font from public/fonts/inter/ (TTF, weight & optical sizing axes + italics)
  */
 @Injectable({
   providedIn: 'root'
@@ -97,53 +103,84 @@ export class FontService {
   /**
    * Get the font file path for a specific font.
    * Useful for preloading fonts programmatically.
+   *
+   * Available fonts (all variable format):
+   * - cinzel: Variable TTF font (weight axis)
+   * - crimson-text: TTF fonts in weights 400, 600, 700 (with italic variants)
+   * - jetbrains-mono: Variable TTF font (weight axis + italics)
+   * - inter: Variable TTF font (weight & optical sizing axes + italics)
    */
   getFontPath(
     family: 'cinzel' | 'crimson-text' | 'jetbrains-mono' | 'inter',
     weight: 'regular' | 'medium' | 'semibold' | 'bold' = 'regular',
-    format: 'woff2' | 'woff' = 'woff2'
-  ): string {
-    const familyMap: { [key: string]: string } = {
-      'cinzel': 'Cinzel',
-      'crimson-text': 'CrimsonText',
-      'jetbrains-mono': 'JetBrainsMono',
-      'inter': 'Inter'
-    };
+    style: 'normal' | 'italic' = 'normal'
+  ): string | null {
+    // Cinzel: variable font
+    if (family === 'cinzel') {
+      return `${this.basePath}/cinzel/Cinzel-VariableFont_wght.ttf`;
+    }
 
-    const weightMap: { [key: string]: string } = {
-      'regular': 'Regular',
-      'medium': 'Medium',
-      'semibold': 'SemiBold',
-      'bold': 'Bold'
-    };
+    // Crimson Text: discrete weight files
+    if (family === 'crimson-text') {
+      const weightMap: { [key: string]: string } = {
+        'regular': 'Regular',
+        'medium': 'Regular',
+        'semibold': 'SemiBold',
+        'bold': 'Bold'
+      };
 
-    const fileName = `${familyMap[family]}-${weightMap[weight]}.${format}`;
-    return `${this.basePath}/${family}/${fileName}`;
+      const styleSuffix = style === 'italic' ? 'Italic' : '';
+      const weightLabel = weightMap[weight];
+      const fileName = `CrimsonText-${weightLabel}${styleSuffix}.ttf`;
+      return `${this.basePath}/crimson-text/${fileName}`;
+    }
+
+    // JetBrains Mono: variable font with optional italic
+    if (family === 'jetbrains-mono') {
+      const italicPart = style === 'italic' ? '-Italic' : '';
+      return `${this.basePath}/jetbrains-mono/JetBrainsMono${italicPart}-VariableFont_wght.ttf`;
+    }
+
+    // Inter: variable font with optional italic
+    if (family === 'inter') {
+      const italicPart = style === 'italic' ? '-Italic' : '';
+      return `${this.basePath}/inter/Inter${italicPart}-VariableFont_opsz,wght.ttf`;
+    }
+
+    return null;
   }
 
   /**
    * Programmatically preload a font by adding a link tag to the document head.
    * Most fonts are already configured in _fonts.scss, but this allows dynamic loading.
+   * Returns false if the font is not available.
    */
   preloadFont(
     family: 'cinzel' | 'crimson-text' | 'jetbrains-mono' | 'inter',
-    weight: 'regular' | 'medium' | 'semibold' | 'bold' = 'regular'
-  ): void {
-    const path = this.getFontPath(family, weight, 'woff2');
+    weight: 'regular' | 'medium' | 'semibold' | 'bold' = 'regular',
+    style: 'normal' | 'italic' = 'normal'
+  ): boolean {
+    const path = this.getFontPath(family, weight, style);
+
+    if (!path) {
+      console.warn(`Font path not found for ${family}`);
+      return false;
+    }
 
     // Check if preload link already exists
     if (document.querySelector(`link[href="${path}"]`)) {
-      return;
+      return true;
     }
 
     const link = document.createElement('link');
     link.rel = 'preload';
     link.as = 'font';
-    link.type = 'font/woff2';
+    link.type = 'font/ttf';
     link.href = path;
     link.crossOrigin = 'anonymous';
 
     document.head.appendChild(link);
+    return true;
   }
 
   /**

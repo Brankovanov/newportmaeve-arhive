@@ -4,6 +4,15 @@ import { NmImage } from '../content/models';
 /**
  * ImageService handles image path resolution and optimization metadata.
  * All images are stored in public/images/ with a consistent folder structure.
+ *
+ * Supported categories:
+ * - characters: Character portraits, turnarounds, sheets, and items (.webp)
+ * - districts: District imagery and maps (.webp)
+ * - city: City-wide imagery (.webp)
+ * - author: Author and creator images (.webp)
+ * - content: General content, covers, and placeholders (.webp, .svg)
+ *
+ * All images use optimized WebP format with SVG placeholders as fallback.
  */
 @Injectable({
   providedIn: 'root'
@@ -13,9 +22,9 @@ export class ImageService {
 
   /**
    * Resolve the URL for an image based on its type and identifier.
-   * Supports characters, districts, author, and general images.
+   * Supports characters, districts, city, author, and general content images.
    */
-  resolveImageUrl(category: 'characters' | 'districts' | 'author' | 'content', filename: string): string {
+  resolveImageUrl(category: 'characters' | 'districts' | 'city' | 'author' | 'content', filename: string): string {
     if (!filename) {
       return this.getPlaceholderImage();
     }
