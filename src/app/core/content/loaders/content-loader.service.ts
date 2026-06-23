@@ -77,11 +77,11 @@ export class ContentLoaderService {
   }
 
   private loadSeries(): Promise<SeriesInfo> {
-    return this.loadAndValidate<SeriesInfo>('/data/series.json', this.validateSeries);
+    return this.loadAndValidate<SeriesInfo>('/data/series.json', (data) => this.validateSeries(data));
   }
 
   private loadAudiobook(): Promise<Audiobook> {
-    return this.loadAndValidate<Audiobook>('/data/audiobook.json', this.validateAudiobook);
+    return this.loadAndValidate<Audiobook>('/data/audiobook.json', (data) => this.validateAudiobook(data));
   }
 
   private loadCharacters(): Promise<Character[]> {
@@ -95,7 +95,7 @@ export class ContentLoaderService {
   }
 
   private loadCity(): Promise<City> {
-    return this.loadAndValidate<City>('/data/city.json', this.validateCity);
+    return this.loadAndValidate<City>('/data/city.json', (data) => this.validateCity(data));
   }
 
   private loadQuotes(): Promise<Quote[]> {
@@ -109,7 +109,7 @@ export class ContentLoaderService {
   }
 
   private loadAuthor(): Promise<Author> {
-    return this.loadAndValidate<Author>('/data/author.json', this.validateAuthor);
+    return this.loadAndValidate<Author>('/data/author.json', (data) => this.validateAuthor(data));
   }
 
   private loadCommunityLinks(): Promise<CommunityLink[]> {
@@ -231,9 +231,10 @@ export class ContentLoaderService {
       throw new Error('City districts must be an array');
     }
 
-    (city['districts'] as unknown[]).forEach((district, idx) => {
-      this.validateDistrict(district, idx);
-    });
+    const districts = city['districts'] as unknown[];
+    for (let i = 0; i < districts.length; i++) {
+      this.validateDistrict(districts[i], i);
+    }
 
     return data as City;
   }
