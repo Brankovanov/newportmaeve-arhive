@@ -427,44 +427,21 @@ export class ArchiveService {
 
 ### Route Structure
 
-```typescript
-// app.routes.ts (Root routes)
-export const routes: Routes = [
-  {
-    path: '',
-    component: LayoutComponent,
-    children: [
-      {
-        path: 'archives',
-        loadChildren: () => import('./features/archive/archive.routes')
-          .then(m => m.ARCHIVE_ROUTES)
-      },
-      {
-        path: 'search',
-        loadChildren: () => import('./features/search/search.routes')
-          .then(m => m.SEARCH_ROUTES)
-      }
-    ]
-  }
-];
+Current implementation in `src/app/app.routes.ts` uses lazy-loaded standalone pages:
 
-// features/archive/archive.routes.ts (Feature routes)
-export const ARCHIVE_ROUTES: Routes = [
-  {
-    path: '',
-    component: ArchiveListComponent
-  },
-  {
-    path: ':id',
-    component: ArchiveDetailComponent
-  },
-  {
-    path: ':id/edit',
-    component: ArchiveEditComponent,
-    canDeactivate: [UnsavedChangesGuard]
-  }
-];
-```
+| Route | Content | Loading strategy |
+|-------|---------|------------------|
+| `/` | Hero landing, entry CTA, series intro | `loadComponent` |
+| `/listen` | Prequel audiobook with embedded YouTube player | `loadComponent` |
+| `/characters` | Character roster with reveal mechanic | `loadComponent` |
+| `/characters/:slug` | Character profile page | `loadComponent` |
+| `/city` | City overview with district links | `loadComponent` |
+| `/city/:district` | District deep-dive page | `loadComponent` |
+| `/author` | Dean Jordanov about section | `loadComponent` |
+| `/connect` | External social/platform links | `loadComponent` |
+| `**` | Fallback redirect to `/` | redirect |
+
+Server-side rendering route strategy in `src/app/app.routes.server.ts` is configured as `RenderMode.Server` to support dynamic parameterized routes without prerender param manifests.
 
 ### Lazy Loading Benefits
 

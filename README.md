@@ -3,7 +3,7 @@
 A modern, SEO-optimized, and accessible web application for archiving and browsing historical collections. Built with Angular 22, TypeScript, and server-side rendering.
 
 **Repository:** https://github.com/Brankovanov/newportmaeve-arhive  
-**Documentation:** See [DEVELOPMENT.md](./DEVELOPMENT.md) for architecture and setup guides  
+**Documentation:** See [ARCHITECTURE.md](./ARCHITECTURE.md) and [DEVELOPMENT_SETUP.md](./DEVELOPMENT_SETUP.md) for architecture and setup guides  
 **Checklist:** Track progress with [DEVELOPMENT_CHECKLIST.md](./DEVELOPMENT_CHECKLIST.md)
 
 ---
@@ -74,6 +74,19 @@ newportmaeve-achives/
 ✅ **TypeScript Strict Mode** — Maximum type safety and developer experience  
 ✅ **Accessible by Default** — WCAG AA compliance and AXE audit passing  
 ✅ **SEO Optimized** — Meta tags, structured data, and semantic HTML  
+
+### Story Routes
+
+| Route | Content |
+|-------|---------|
+| `/` | Hero landing with animated-style tagline, entry CTA, and series introduction |
+| `/listen` | Prequel audiobook section with embedded YouTube player |
+| `/characters` | Character roster with reveal mechanic |
+| `/characters/:slug` | Individual character detail page |
+| `/city` | Newport Maeve overview with district map links |
+| `/city/:district` | Individual district deep-dive page |
+| `/author` | Dean Jordanov about section |
+| `/connect` | External links (YouTube, Wiki, DeviantArt, Facebook) |
 
 ---
 
@@ -297,7 +310,8 @@ See [src/styles.scss](./src/styles.scss) for the complete design system.
 
 | Document | Purpose |
 |----------|---------|
-| [DEVELOPMENT.md](./DEVELOPMENT.md) | Architecture, setup, and development guide |
+| [ARCHITECTURE.md](./ARCHITECTURE.md) | System architecture and routing design |
+| [DEVELOPMENT_SETUP.md](./DEVELOPMENT_SETUP.md) | Local setup and tooling guide |
 | [DEVELOPMENT_CHECKLIST.md](./DEVELOPMENT_CHECKLIST.md) | Development tasks and progress tracking |
 | [CONTRIBUTING.md](./CONTRIBUTING.md) | Contribution guidelines and workflow |
 | [.claude/CLAUDE.md](./.claude/CLAUDE.md) | AI assistant instructions and standards |
@@ -325,13 +339,13 @@ Please read [CONTRIBUTING.md](./CONTRIBUTING.md) before submitting pull requests
 
 ### Current Phase: **Phase 1 - Foundation & Core Infrastructure**
 
-**Progress:** 1/187 tasks complete (0.5%)
+**Progress:** 9/187 tasks complete (4.8%)
 
 **Immediate Next Steps:**
-- [ ] Define route structure
-- [ ] Create feature modules
-- [ ] Build navigation components
-- [ ] Set up SEO services
+- [ ] Create meta service for dynamic title/description
+- [ ] Add Open Graph integration
+- [ ] Add robots.txt and sitemap generation
+- [ ] Add canonical URL service
 
 See [DEVELOPMENT_CHECKLIST.md](./DEVELOPMENT_CHECKLIST.md) for the complete roadmap.
 
@@ -376,7 +390,7 @@ See [DEVELOPMENT_CHECKLIST.md](./DEVELOPMENT_CHECKLIST.md) for the full developm
 ## 📞 Support
 
 For questions or support:
-- 📧 Check documentation in [DEVELOPMENT.md](./DEVELOPMENT.md)
+- 📧 Check documentation in [ARCHITECTURE.md](./ARCHITECTURE.md) and [DEVELOPMENT_SETUP.md](./DEVELOPMENT_SETUP.md)
 - 🐛 Search [existing issues](https://github.com/Brankovanov/newportmaeve-arhive/issues)
 - 💬 Create a [new issue](https://github.com/Brankovanov/newportmaeve-arhive/issues/new)
 

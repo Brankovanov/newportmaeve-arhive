@@ -1,0 +1,54 @@
+.hero {
+  padding: 3rem 1.25rem;
+  border-radius: 1rem;
+  border: 1px solid rgb(148 163 184 / 30%);
+  background: linear-gradient(140deg, rgb(15 23 42 / 92%), rgb(30 41 59 / 85%));
+}
+
+.eyebrow {
+  margin: 0;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-size: 0.75rem;
+  color: #93c5fd;
+}
+
+h1 {
+  margin: 0.6rem 0;
+  line-height: 1.1;
+  font-size: clamp(2rem, 3.8vw, 3.4rem);
+}
+
+.tagline {
+  max-width: 60ch;
+  color: #cbd5e1;
+}
+
+.cta-row {
+  margin-top: 1.2rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.cta {
+  text-decoration: none;
+  border-radius: 999px;
+  padding: 0.65rem 1rem;
+}
+
+.primary {
+  color: #fff;
+  background: #2563eb;
+}
+
+.ghost {
+  color: #bfdbfe;
+  border: 1px solid rgb(147 197 253 / 50%);
+}
+
+.intro {
+  margin-top: 1.2rem;
+  border-left: 3px solid #60a5fa;
+  padding: 0.2rem 0 0.2rem 1rem;
+}

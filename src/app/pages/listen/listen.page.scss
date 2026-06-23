@@ -1,0 +1,18 @@
+h1 {
+  margin-top: 0;
+}
+
+.video-wrap {
+  margin-top: 1rem;
+  border-radius: 1rem;
+  overflow: hidden;
+  border: 1px solid rgb(148 163 184 / 35%);
+  background: #020617;
+}
+
+iframe {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  display: block;
+  border: 0;
+}

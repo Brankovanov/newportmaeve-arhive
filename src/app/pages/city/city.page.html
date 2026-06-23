@@ -1,0 +1,16 @@
+<section>
+  <h1>City of Newport Maeve</h1>
+  <p>
+    A layered city split by memory-tides, with every district preserving a different century.
+  </p>
+
+  <div class="district-grid" role="list" aria-label="District map links">
+    @for (district of districts; track district.slug) {
+      <article role="listitem" class="district-card">
+        <h2>{{ district.name }}</h2>
+        <p>{{ district.summary }}</p>
+        <a [routerLink]="['/city', district.slug]">Open district</a>
+      </article>
+    }
+  </div>
+</section>

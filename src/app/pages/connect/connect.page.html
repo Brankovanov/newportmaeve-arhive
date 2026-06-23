@@ -1,0 +1,11 @@
+<section>
+  <h1>Connect</h1>
+  <p>Follow Newport Maeve across platforms.</p>
+  <ul>
+    @for (link of links; track link.label) {
+      <li>
+        <a [href]="link.href" target="_blank" rel="noopener noreferrer">{{ link.label }}</a>
+      </li>
+    }
+  </ul>
+</section>
