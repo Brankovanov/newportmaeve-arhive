@@ -1,0 +1,56 @@
+@use '../../../../styles/variables' as v;
+
+.tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: v.$space-2;
+  padding-bottom: v.$space-2;
+  border-bottom: v.$border-width solid rgb(240 236 228 / 0.1);
+}
+
+.tabs__tab {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 2.75rem;
+  padding: 0 v.$space-4;
+  border: v.$border-width solid rgb(240 236 228 / 0.1);
+  border-radius: v.$radius-pill;
+  background: transparent;
+  color: v.$color-text-muted;
+  text-decoration: none;
+  font: inherit;
+  cursor: pointer;
+  transition: v.$transition-all;
+}
+
+.tabs__tab:hover,
+.tabs__tab:focus-visible,
+.tabs__tab--active {
+  color: v.$color-text;
+  border-color: rgb(201 168 76 / 0.32);
+  background-color: rgb(201 168 76 / 0.1);
+}
+
+.tabs__tab--disabled {
+  cursor: not-allowed;
+  opacity: 0.45;
+}
+
+.tabs__tab:focus-visible {
+  outline: v.$border-width-thick solid rgb(240 236 228 / 0.85);
+  outline-offset: 2px;
+}
+
+@media (max-width: 768px) {
+  .tabs {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tabs__tab {
+    transition: none;
+  }
+}

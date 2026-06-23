@@ -1,0 +1,66 @@
+@use '../../../../styles/variables' as v;
+
+.sidebar-menu {
+  display: grid;
+  gap: v.$gap-sm;
+  padding: v.$space-4;
+  border: v.$border-width solid rgb(201 168 76 / 0.16);
+  border-radius: v.$radius-lg;
+  background: linear-gradient(180deg, rgb(26 26 26 / 0.92) 0%, rgb(17 17 17 / 0.98) 100%);
+}
+
+.sidebar-menu__section {
+  display: grid;
+  gap: v.$space-3;
+}
+
+.sidebar-menu__title {
+  margin: 0;
+  color: v.$color-accent;
+  font-size: v.$fs-sm;
+  font-family: v.$font-utility;
+  letter-spacing: v.$ls-wider;
+  text-transform: uppercase;
+}
+
+.sidebar-menu__list {
+  display: grid;
+  gap: v.$space-2;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.sidebar-menu__link {
+  display: grid;
+  gap: v.$space-1;
+  padding: v.$space-3;
+  border: v.$border-width solid transparent;
+  border-radius: v.$radius-md;
+  text-decoration: none;
+  color: v.$color-text;
+  transition: v.$transition-all;
+}
+
+.sidebar-menu__description {
+  color: v.$color-text-muted;
+  font-size: v.$fs-sm;
+}
+
+.sidebar-menu__link:hover,
+.sidebar-menu__link:focus-visible,
+.sidebar-menu__link--active {
+  border-color: rgb(201 168 76 / 0.28);
+  background-color: rgb(201 168 76 / 0.08);
+}
+
+.sidebar-menu__link:focus-visible {
+  outline: v.$border-width-thick solid rgb(240 236 228 / 0.85);
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .sidebar-menu__link {
+    transition: none;
+  }
+}

@@ -1,0 +1,31 @@
+<div class="tabs" role="tablist" [attr.aria-label]="ariaLabel()">
+  @for (item of items(); track item.id) {
+    @if (item.href) {
+      <a
+        class="tabs__tab"
+        [class.tabs__tab--active]="resolvedActiveId() === item.id"
+        [class.tabs__tab--disabled]="item.disabled"
+        [routerLink]="item.href"
+        routerLinkActive="tabs__tab--active"
+        [attr.aria-disabled]="item.disabled || null"
+        [attr.tabindex]="item.disabled ? -1 : 0"
+      >
+        {{ item.label }}
+      </a>
+    } @else {
+      <button
+        type="button"
+        class="tabs__tab"
+        [class.tabs__tab--active]="resolvedActiveId() === item.id"
+        [class.tabs__tab--disabled]="item.disabled"
+        role="tab"
+        [attr.aria-selected]="resolvedActiveId() === item.id"
+        [attr.aria-controls]="item.panelId ?? null"
+        [disabled]="item.disabled ?? false"
+        (click)="selectTab(item)"
+      >
+        {{ item.label }}
+      </button>
+    }
+  }
+</div>

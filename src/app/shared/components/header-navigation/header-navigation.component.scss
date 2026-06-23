@@ -1,0 +1,112 @@
+@use '../../../../styles/variables' as v;
+
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: v.$z-nav;
+  backdrop-filter: blur(18px);
+  background:
+    linear-gradient(180deg, rgb(10 10 10 / 94%) 0%, rgb(10 10 10 / 82%) 100%),
+    radial-gradient(circle at top left, rgb(201 168 76 / 0.14), transparent 42%);
+  border-bottom: v.$border-width solid rgb(201 168 76 / 0.18);
+}
+
+.site-header__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: v.$gap-sm;
+  width: min(100% - 2rem, v.$container-xl);
+  margin: 0 auto;
+  padding: v.$space-4 0;
+}
+
+.brand {
+  display: inline-flex;
+  flex-direction: column;
+  gap: v.$space-1;
+  color: v.$color-text;
+  text-decoration: none;
+}
+
+.brand__eyebrow {
+  font-family: v.$font-utility;
+  font-size: v.$fs-xs;
+  letter-spacing: v.$ls-wider;
+  text-transform: uppercase;
+  color: v.$color-text-muted;
+}
+
+.brand__title {
+  font-family: v.$font-display;
+  font-size: v.$fs-lg;
+  letter-spacing: v.$ls-wide;
+  text-transform: uppercase;
+  color: v.$color-accent;
+}
+
+.primary-nav {
+  overflow-x: auto;
+}
+
+.nav-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: v.$space-2;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.nav-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 2.5rem;
+  padding: 0 v.$space-4;
+  border: v.$border-width solid transparent;
+  border-radius: v.$radius-pill;
+  color: v.$color-text-muted;
+  text-decoration: none;
+  font-family: v.$font-sans;
+  font-size: v.$fs-sm;
+  transition: v.$transition-all;
+}
+
+.nav-link:hover,
+.nav-link:focus-visible,
+.nav-link--active {
+  color: v.$color-text;
+  border-color: rgb(201 168 76 / 0.38);
+  background-color: rgb(201 168 76 / 0.1);
+  box-shadow: v.$glow-brass;
+}
+
+.nav-link:focus-visible {
+  outline: v.$border-width-thick solid rgb(240 236 228 / 0.85);
+  outline-offset: 2px;
+}
+
+@media (max-width: 768px) {
+  .site-header__inner {
+    flex-direction: column;
+    align-items: stretch;
+    padding: v.$space-4 0 v.$space-3;
+  }
+
+  .primary-nav {
+    margin-inline: -0.25rem;
+    padding-bottom: v.$space-1;
+  }
+
+  .nav-list {
+    flex-wrap: nowrap;
+    width: max-content;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .nav-link {
+    transition: none;
+  }
+}

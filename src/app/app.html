@@ -1,20 +1,12 @@
 <div class="app-shell">
-  <header class="site-header">
-    <a class="brand" routerLink="/">Newport Maeve Archives</a>
-    <nav aria-label="Primary">
-      <ul class="nav-list">
-        <li><a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Home</a></li>
-        <li><a routerLink="/listen" routerLinkActive="active">Listen</a></li>
-        <li><a routerLink="/characters" routerLinkActive="active">Characters</a></li>
-        <li><a routerLink="/city" routerLinkActive="active">City</a></li>
-        <li><a routerLink="/author" routerLinkActive="active">Author</a></li>
-        <li><a routerLink="/connect" routerLinkActive="active">Connect</a></li>
-      </ul>
-    </nav>
-  </header>
+  <app-header-navigation></app-header-navigation>
 
-  <main class="page-content">
-    <app-breadcrumbs></app-breadcrumbs>
-    <router-outlet></router-outlet>
-  </main>
+  <div class="app-shell__body">
+    <main class="page-content">
+      <app-breadcrumbs></app-breadcrumbs>
+      <router-outlet></router-outlet>
+    </main>
+
+    <app-footer></app-footer>
+  </div>
 </div>

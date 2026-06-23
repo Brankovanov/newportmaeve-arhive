@@ -1,0 +1,24 @@
+<footer class="site-footer">
+  <div class="site-footer__inner">
+    <section class="site-footer__brand" aria-labelledby="footer-brand-title">
+      <p class="site-footer__eyebrow">Story World</p>
+      <h2 id="footer-brand-title" class="site-footer__title">Newport Maeve Archives</h2>
+      <p class="site-footer__copy">
+        A dark serialized world of factions, districts, and buried histories, arranged for readers,
+        listeners, and returning investigators.
+      </p>
+    </section>
+
+    <nav class="site-footer__nav" aria-label="Footer">
+      <ul class="site-footer__links">
+        @for (item of footerLinks; track item.href) {
+          <li>
+            <a [routerLink]="item.href">{{ item.label }}</a>
+          </li>
+        }
+      </ul>
+    </nav>
+
+    <p class="site-footer__meta">&copy; {{ currentYear }} Newport Maeve Archives</p>
+  </div>
+</footer>

@@ -1,0 +1,25 @@
+<header class="site-header">
+  <div class="site-header__inner">
+    <a class="brand" routerLink="/" aria-label="Newport Maeve Archives home">
+      <span class="brand__eyebrow">Newport Maeve</span>
+      <span class="brand__title">Archives</span>
+    </a>
+
+    <nav class="primary-nav" aria-label="Primary">
+      <ul class="nav-list">
+        @for (item of navigationItems; track item.href) {
+          <li>
+            <a
+              class="nav-link"
+              [routerLink]="item.href"
+              routerLinkActive="nav-link--active"
+              [routerLinkActiveOptions]="{ exact: item.exact ?? false }"
+            >
+              {{ item.label }}
+            </a>
+          </li>
+        }
+      </ul>
+    </nav>
+  </div>
+</header>

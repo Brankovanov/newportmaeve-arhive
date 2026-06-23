@@ -1,0 +1,20 @@
+<aside class="sidebar-menu" [attr.aria-label]="ariaLabel()">
+  @for (section of sections(); track section.id) {
+    <section class="sidebar-menu__section" [attr.aria-labelledby]="section.id">
+      <h2 class="sidebar-menu__title" [id]="section.id">{{ section.title }}</h2>
+
+      <ul class="sidebar-menu__list">
+        @for (item of section.items; track item.href) {
+          <li>
+            <a class="sidebar-menu__link" [routerLink]="item.href" routerLinkActive="sidebar-menu__link--active">
+              <span class="sidebar-menu__label">{{ item.label }}</span>
+              @if (item.description) {
+                <span class="sidebar-menu__description">{{ item.description }}</span>
+              }
+            </a>
+          </li>
+        }
+      </ul>
+    </section>
+  }
+</aside>
