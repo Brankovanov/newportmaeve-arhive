@@ -5,4 +5,9 @@
     District deep-dive page for <strong>{{ district() }}</strong>.
     Add timeline fragments, maps, and district factions here.
   </p>
+
+  <app-social-share
+    [title]="'Share this district profile'"
+    [text]="'Discover ' + (displayName() | titlecase) + ' in Newportmaeve Archives.'"
+  ></app-social-share>
 </section>

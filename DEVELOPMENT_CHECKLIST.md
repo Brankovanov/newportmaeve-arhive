@@ -1,8 +1,8 @@
 # Development Checklist - Newportmaeve Archives
 
 **Last Updated:** 2026-06-23  
-**Current Phase:** Phase 2 - UI/UX & Design System  
-**Overall Progress:** 18.2% (34/187 tasks)
+**Current Phase:** Phase 3 - Static Content Architecture  
+**Overall Progress:** Rebaselined for static informational scope
 
 ---
 
@@ -17,7 +17,7 @@
 
 ### Routing & Navigation
 - [x] Define route structure and feature modules
-- [ ] Create feature module for archive functionality
+- [ ] Create feature module for archive functionality (SKIPPED)
 - [x] Implement lazy loading for all feature routes
 - [x] Create main navigation component (header/sidebar)
 - [x] Create layout wrapper component
@@ -49,16 +49,16 @@
 
 ### Reusable Components (Basic)
 - [x] Button component (primary, secondary, tertiary variants)
-- [ ] Input text component
-- [ ] Input textarea component
-- [ ] Select dropdown component
-- [ ] Checkbox component
-- [ ] Radio button component
+- [ ] Input text component (SKIPPED)
+- [ ] Input textarea component (SKIPPED)
+- [ ] Select dropdown component (SKIPPED)
+- [ ] Checkbox component (SKIPPED)
+- [ ] Radio button component (SKIPPED)
 
 ### Reusable Components (Complex)
 - [x] Card component
 - [x] Modal/Dialog component
-- [ ] Toast/Notification component
+- [ ] Toast/Notification component (SKIPPED)
 - [x] Loading spinner component
 - [x] Skeleton loader component
 - [ ] Pagination component (SKIPPED)
@@ -72,11 +72,11 @@
 - [x] Footer component
 
 ### Accessibility Compliance
-- [ ] Run AXE audit on all components
+- [ ] Run AXE audit on all components (SKIPPED)
 - [x] Implement focus management across all interactive elements
 - [x] Add ARIA labels and descriptions where needed
-- [ ] Test with keyboard navigation only
-- [ ] Test color contrast ratios (WCAG AA minimum)
+- [ ] Test with keyboard navigation only (SKIPPED)
+- [ ] Test color contrast ratios (WCAG AA minimum) (SKIPPED)
 - [x] Create accessibility testing checklist
 - [x] Document accessibility patterns
 
@@ -84,88 +84,82 @@
 
 ---
 
-## Phase 3: Data Management & Services (Weeks 3-4)
+## Phase 3: Static Content Architecture (Weeks 3-4)
 
-### State Management
-- [ ] Evaluate state management approach (signals, NgRx, Akita)
-- [ ] Set up global state store
-- [ ] Implement auth state management
-- [ ] Create user preferences state
-- [ ] Add loading/error state management
-- [ ] Create computed signals for derived state
+### Content Model & JSON Structure
+- [ ] Define JSON schemas/interfaces for all content domains (characters, city, districts, author, connect)
+- [ ] Create central `src/app/core/content` folder for content models and utilities
+- [ ] Create typed data loaders for local JSON files in `public/` or `src/assets/`
+- [ ] Add runtime guards/validation for malformed JSON data
+- [ ] Create slug-index maps for fast route lookups (character and district detail pages)
+- [ ] Document JSON authoring rules (required fields, slug format, image references)
 
-### HTTP & API Integration
-- [ ] Create HTTP interceptor for auth tokens
-- [ ] Implement request/response logging interceptor
-- [ ] Add error handling interceptor
-- [ ] Create API service abstraction layer
-- [ ] Implement retry logic for failed requests
-- [ ] Add request timeout handling
-- [ ] Create typed API response models
+### Content Delivery (No Backend)
+- [ ] Replace API-oriented services with static content services
+- [ ] Ensure all pages read from predefined JSON files only
+- [ ] Implement graceful fallback for missing content records
+- [ ] Add shared empty/error display for content-not-found states
+- [ ] Ensure SSR renders static content correctly for all routes
 
-### Data Persistence
-- [ ] Implement localStorage service wrapper
-- [ ] Create sessionStorage service wrapper
-- [ ] Create cache service for API responses
-- [ ] Implement cache invalidation strategy
-- [ ] Set up session management service
+### Asset Strategy (Images & Media)
+- [ ] Define folder convention for image assets (`public/images/...`)
+- [ ] Map JSON image keys to local asset paths
+- [ ] Implement `NgOptimizedImage` for all static content images
+- [ ] Add image metadata rules (alt text, dimensions, optional captions)
+- [ ] Add default/fallback image handling for missing assets
 
-**Subtotal Phase 3:** 0/20 tasks
+**Subtotal Phase 3:** 0/16 tasks
 
 ---
 
-## Phase 4: Authentication & Security (Weeks 4-5)
+## Phase 4: Read-Only UX & Navigation Polish (Weeks 4-5)
 
-### Authentication
-- [ ] Design authentication flow
-- [ ] Implement login component/page
-- [ ] Implement signup component/page
-- [ ] Create auth guard for protected routes
-- [ ] Implement JWT token management
-- [ ] Add refresh token logic
-- [ ] Create logout functionality
-- [ ] Implement "Remember me" feature
-- [ ] Create password reset flow
-- [ ] Add email verification flow
+### Read-Only Experience
+- [ ] Remove/avoid all login, signup, and account-related routes/components
+- [ ] Remove/avoid all CRUD-oriented UI (create, edit, delete, save actions)
+- [ ] Ensure content pages are optimized for reading and discovery only
+- [ ] Improve typography and spacing for long-form informational reading
+- [ ] Add section anchors/table of contents where content is lengthy
 
-### Security
-- [ ] Implement CSRF protection
-- [ ] Add Content Security Policy headers
-- [ ] Sanitize all user inputs (DomSanitizer)
-- [ ] Validate all API responses
-- [ ] Implement rate limiting
-- [ ] Add security headers middleware
-- [ ] Review dependency vulnerabilities
-- [ ] Implement HTTPS enforcement
+### Navigation & Discovery
+- [ ] Add/verify clear navigation between list pages and detail pages
+- [ ] Improve breadcrumbs across all detail routes
+- [ ] Add related-content blocks (e.g., related characters/districts)
+- [ ] Add client-side filtering/search for local datasets (no server)
+- [ ] Ensure all internal links are crawlable and SSR-friendly
 
-**Subtotal Phase 4:** 0/18 tasks
+### Security Baseline (Static Site)
+- [ ] Add/verify Content Security Policy headers in SSR server config
+- [ ] Add/verify secure headers for static delivery
+- [ ] Sanitize and validate any externally sourced links in content JSON
+- [ ] Run dependency vulnerability scan and resolve critical issues
+
+**Subtotal Phase 4:** 0/14 tasks
 
 ---
 
 ## Phase 5: Testing & Quality Assurance (Weeks 5-6)
 
 ### Unit Tests
-- [ ] Write tests for all services (target: 80%+ coverage)
+- [ ] Write tests for static content services/loaders (target: 80%+ coverage)
 - [ ] Write tests for all components
-- [ ] Mock all HTTP calls in tests
-- [ ] Test error scenarios in services
+- [ ] Test JSON parsing and malformed-data scenarios
+- [ ] Test error scenarios in content services
 - [ ] Test error scenarios in components
 - [ ] Test edge cases
 - [ ] Achieve 80%+ overall code coverage
 
 ### Integration Tests
-- [ ] Test authentication flows end-to-end
-- [ ] Test data fetching and display flows
-- [ ] Test form submissions with validation
+- [ ] Test static content loading and display flows
+- [ ] Test route-to-content mapping by slug
 - [ ] Test navigation flows
 - [ ] Test accessibility in real components
 - [ ] Test SSR rendering
 
 ### E2E Testing
 - [ ] Set up Cypress or Playwright
-- [ ] Create login/logout journey tests
 - [ ] Create data browsing journey tests
-- [ ] Create search functionality tests
+- [ ] Create local search/filter functionality tests
 - [ ] Test on multiple browsers (Chrome, Firefox, Safari, Edge)
 - [ ] Test on different screen sizes (mobile, tablet, desktop)
 - [ ] Test SEO functionality (meta tags rendering)
@@ -177,7 +171,7 @@
 - [ ] Add pre-commit hooks (Husky)
 - [ ] Add commit message linting
 
-**Subtotal Phase 5:** 0/32 tasks
+**Subtotal Phase 5:** 0/31 tasks
 
 ---
 
@@ -194,7 +188,7 @@
 ### Runtime Performance
 - [ ] Implement virtual scrolling for large lists
 - [ ] Add lazy loading for below-the-fold content
-- [ ] Ensure `OnPush` change detection is used
+- [ ] Confirm default change detection strategy is retained (Angular v22+ defaults)
 - [ ] Review and optimize change detection
 - [ ] Implement memoization for expensive computations
 - [ ] Monitor Core Web Vitals (LCP, FID, CLS)
@@ -203,7 +197,7 @@
 ### Server Performance
 - [ ] Add caching headers for static assets
 - [ ] Implement compression (gzip/brotli)
-- [ ] Add response caching for API calls
+- [ ] Add response caching for static JSON and SSR pages
 - [ ] Optimize SSR rendering performance
 - [ ] Implement service worker for offline capability
 - [ ] Cache static HTML pages
@@ -247,7 +241,15 @@
 ## Phase 8: Monitoring & Maintenance (Ongoing)
 
 ### Analytics & Monitoring
-- [ ] Implement Google Analytics 4 tracking
+- [x] Implement Google Analytics 4 tracking
+- [ ] Configure production GA4 Measurement ID in deployment configuration
+- [ ] Verify `page_view` events for all routed pages in GA4 Realtime
+- [ ] Track key engagement events (`share_click`, `outbound_link_click`, `audio_play`)
+- [x] Implement reusable social sharing mechanisms (native share, copy link, platform links)
+- [ ] Add route-aware `og:image` / `twitter:image` for richer social previews
+- [ ] Add static social preview image assets for key informational pages
+- [ ] Validate social share previews with platform debugger tools
+- [ ] Test share UX on mobile and desktop (native and fallback paths)
 - [ ] Set up error tracking (Sentry)
 - [ ] Monitor performance metrics (Real User Monitoring)
 - [ ] Track user engagement metrics
@@ -255,7 +257,7 @@
 - [ ] Create performance dashboard
 
 ### Documentation
-- [ ] Create API documentation (Swagger/OpenAPI)
+- [ ] Document static content schema and publishing workflow
 - [ ] Document component usage with Storybook
 - [ ] Create deployment runbooks
 - [ ] Document decision records (ADRs)
@@ -271,7 +273,7 @@
 - [ ] Create bug triage process
 - [ ] Plan feature improvements based on usage
 
-**Subtotal Phase 8:** 0/21 tasks
+**Subtotal Phase 8:** 2/26 tasks
 
 ---
 
@@ -280,14 +282,14 @@
 | Phase | Status | Progress |
 |-------|--------|----------|
 | Phase 1: Foundation & Infrastructure | Complete ✅ | 19/19 |
-| Phase 2: UI/UX & Design System | In Progress | 16/36 |
-| Phase 3: Data Management & Services | Not Started | 0/20 |
-| Phase 4: Authentication & Security | Not Started | 0/18 |
-| Phase 5: Testing & QA | Not Started | 0/32 |
+| Phase 2: UI/UX & Design System | In Progress | 20/36 |
+| Phase 3: Static Content Architecture | Not Started | 0/16 |
+| Phase 4: Read-Only UX & Navigation Polish | Not Started | 0/14 |
+| Phase 5: Testing & QA | Not Started | 0/31 |
 | Phase 6: Performance Optimization | Not Started | 0/21 |
 | Phase 7: DevOps & Deployment | Not Started | 0/20 |
-| Phase 8: Monitoring & Maintenance | Not Started | 0/21 |
-| **TOTAL** | **In Progress** | **30/187** |
+| Phase 8: Monitoring & Maintenance | In Progress | 2/26 |
+| **TOTAL** | **In Progress** | **41/183** |
 
 ---
 
@@ -316,8 +318,8 @@ grep -c "^- \[ \]" DEVELOPMENT_CHECKLIST.md
 
 ## Next Actions (Start Here)
 
-1. **☝️ Phase 2 in Progress** - UI/UX & Design System
-2. **Recommended next task:** "Extract existing color tokens into SCSS variables" or "Define typography scale"
-3. **Then:** Complete remaining design system components (buttons, inputs, cards, modals, etc.)
+1. **☝️ Phase 3 Active** - Define JSON schemas/interfaces for all informational content
+2. **Recommended next task:** Create typed static content loader service for predefined JSON files
+3. **Then:** Wire characters/city detail routes to slug-indexed local content maps
 
 Good luck! 🚀

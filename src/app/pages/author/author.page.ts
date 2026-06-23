@@ -1,8 +1,10 @@
 import { Component, OnInit, inject } from '@angular/core';
 import { MetaService } from '../../core/services/meta.service';
+import { SocialShareComponent } from '../../shared/components/social-share/social-share.component';
 
 @Component({
   selector: 'app-author-page',
+  imports: [SocialShareComponent],
   templateUrl: './author.page.html',
   styleUrl: './author.page.scss'
 })

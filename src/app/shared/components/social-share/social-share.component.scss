@@ -1,0 +1,48 @@
+.share-panel {
+  margin-top: 1.5rem;
+  padding: 1rem;
+  border: 1px solid rgb(148 163 184 / 35%);
+  border-radius: 0.75rem;
+  background: rgb(15 23 42 / 45%);
+}
+
+.share-title {
+  margin: 0 0 0.75rem;
+  font-size: 1rem;
+  color: #e2e8f0;
+}
+
+.share-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.share-button,
+.share-link {
+  border-radius: 999px;
+  border: 1px solid rgb(148 163 184 / 40%);
+  padding: 0.4rem 0.75rem;
+  font-size: 0.9rem;
+  line-height: 1;
+  color: #e2e8f0;
+  background: rgb(15 23 42 / 80%);
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.share-button:hover,
+.share-link:hover {
+  background: rgb(37 99 235 / 32%);
+  border-color: rgb(147 197 253 / 60%);
+}
+
+.share-feedback {
+  margin: 0.6rem 0 0;
+  font-size: 0.85rem;
+  color: #93c5fd;
+}
+
+.share-feedback--error {
+  color: #fca5a5;
+}

@@ -8,3 +8,4 @@ export * from './spinner/spinner.component';
 export * from './skeleton-loader/skeleton-loader.component';
 export * from './tabs/tabs.component';
 export * from './breadcrumbs/breadcrumbs.component';
+export * from './social-share/social-share.component';

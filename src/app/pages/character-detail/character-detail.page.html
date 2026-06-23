@@ -5,4 +5,9 @@
     This profile page is bound to the route parameter <strong>{{ slug() }}</strong>.
     Expand this page with biography arcs, affiliations, and audio quotes.
   </p>
+
+  <app-social-share
+    [title]="'Share this character profile'"
+    [text]="'Discover ' + (displayName() | titlecase) + ' in Newportmaeve Archives.'"
+  ></app-social-share>
 </section>

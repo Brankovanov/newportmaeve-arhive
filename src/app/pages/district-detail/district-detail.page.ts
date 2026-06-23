@@ -2,10 +2,11 @@ import { Component, OnInit, computed, inject } from '@angular/core';
 import { TitleCasePipe } from '@angular/common';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { MetaService } from '../../core/services/meta.service';
+import { SocialShareComponent } from '../../shared/components/social-share/social-share.component';
 
 @Component({
   selector: 'app-district-detail-page',
-  imports: [RouterLink, TitleCasePipe],
+  imports: [RouterLink, TitleCasePipe, SocialShareComponent],
   templateUrl: './district-detail.page.html',
   styleUrl: './district-detail.page.scss'
 })

@@ -1,10 +1,11 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { MetaService } from '../../core/services/meta.service';
+import { SocialShareComponent } from '../../shared/components/social-share/social-share.component';
 
 @Component({
   selector: 'app-home-page',
-  imports: [RouterLink],
+  imports: [RouterLink, SocialShareComponent],
   templateUrl: './home.page.html',
   styleUrl: './home.page.scss'
 })
