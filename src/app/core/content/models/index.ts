@@ -4,10 +4,15 @@
 
 // ── Shared primitives ────────────────────────────────────────────────────────
 
-/** Image asset with optional alt text */
+/** Image asset with optional alt text and category for path resolution */
 export interface NmImage {
   src: string;
   alt: string;
+  /** Image category for path resolution: 'characters' | 'districts' | 'author' | 'content' */
+  type?: 'characters' | 'districts' | 'author' | 'content';
+  /** Optional image dimensions for optimization */
+  width?: number;
+  height?: number;
 }
 
 /** A named external link */

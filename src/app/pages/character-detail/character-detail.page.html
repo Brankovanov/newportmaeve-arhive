@@ -1,13 +1,86 @@
 <section>
   <a routerLink="/characters" class="back-link">Back to roster</a>
-  <h1>{{ displayName() | titlecase }}</h1>
-  <p>
-    This profile page is bound to the route parameter <strong>{{ slug() }}</strong>.
-    Expand this page with biography arcs, affiliations, and audio quotes.
-  </p>
 
-  <app-social-share
-    [title]="'Share this character profile'"
-    [text]="'Discover ' + (displayName() | titlecase) + ' in Newportmaeve Archives.'"
-  ></app-social-share>
+  @if (loading()) {
+    <p>Loading character...</p>
+  } @else if (error()) {
+    <div class="error-message">
+      <p>{{ error() }}</p>
+      <a routerLink="/characters" class="button">Back to characters</a>
+    </div>
+  } @else if (character()) {
+    <article class="character-detail">
+      <h1>{{ character()!.name }}</h1>
+      <p class="tagline">{{ character()!.tagline }}</p>
+
+      @if (character()!.quote) {
+        <blockquote>{{ character()!.quote }}</blockquote>
+      }
+
+      <div class="character-info">
+        @if (character()!.age) {
+          <div class="info-item">
+            <strong>Age:</strong> {{ character()!.age }}
+          </div>
+        }
+
+        @if (character()!.race) {
+          <div class="info-item">
+            <strong>Race:</strong> {{ character()!.race }}
+          </div>
+        }
+
+        @if (character()!.role) {
+          <div class="info-item">
+            <strong>Role:</strong> {{ character()!.role }}
+          </div>
+        }
+      </div>
+
+      @if (character()!.bio) {
+        <section class="biography">
+          <h2>Biography</h2>
+          <p>{{ character()!.bio }}</p>
+        </section>
+      }
+
+      @if (character()!.abilities && character()!.abilities.length > 0) {
+        <section class="abilities">
+          <h2>Abilities</h2>
+          <ul>
+            @for (ability of character()!.abilities; track ability) {
+              <li>{{ ability }}</li>
+            }
+          </ul>
+        </section>
+      }
+
+      @if (character()!.traits && character()!.traits.length > 0) {
+        <section class="traits">
+          <h2>Traits</h2>
+          <ul>
+            @for (trait of character()!.traits; track trait) {
+              <li>{{ trait }}</li>
+            }
+          </ul>
+        </section>
+      }
+
+      @if (character()!.affiliations && character()!.affiliations.length > 0) {
+        <section class="affiliations">
+          <h2>Affiliations</h2>
+          <ul>
+            @for (affiliation of character()!.affiliations; track affiliation) {
+              <li>{{ affiliation }}</li>
+            }
+          </ul>
+        </section>
+      }
+    </article>
+
+    <app-social-share
+      [title]="'Share this character profile'"
+      [text]="'Discover ' + character()!.name + ' in Newportmaeve Archives.'"
+    ></app-social-share>
+  }
 </section>

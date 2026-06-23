@@ -4,13 +4,21 @@
     A layered city split by memory-tides, with every district preserving a different century.
   </p>
 
-  <div class="district-grid" role="list" aria-label="District map links">
-    @for (district of districts; track district.slug) {
-      <article role="listitem" class="district-card">
-        <h2>{{ district.name }}</h2>
-        <p>{{ district.summary }}</p>
-        <a [routerLink]="['/city', district.slug]">Open district</a>
-      </article>
-    }
-  </div>
+  @if (loading()) {
+    <p>Loading districts...</p>
+  } @else if (error()) {
+    <div class="error-message">
+      <p>{{ error() }}</p>
+    </div>
+  } @else {
+    <div class="district-grid" role="list" aria-label="District map links">
+      @for (district of districts(); track district.slug) {
+        <article role="listitem" class="district-card">
+          <h2>{{ district.name }}</h2>
+          <p>{{ district.summary }}</p>
+          <a [routerLink]="['/city', district.slug]">Open district</a>
+        </article>
+      }
+    </div>
+  }
 </section>

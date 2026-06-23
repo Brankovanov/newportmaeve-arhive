@@ -1,12 +1,8 @@
-import { Component, OnInit, inject } from '@angular/core';
+import { Component, OnInit, inject, signal } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { MetaService } from '../../core/services/meta.service';
-
-interface District {
-  name: string;
-  slug: string;
-  summary: string;
-}
+import { DistrictIndexService } from '../../core/content/loaders/district-index.service';
+import { District } from '../../core/content/models';
 
 @Component({
   selector: 'app-city-page',
@@ -16,6 +12,7 @@ interface District {
 })
 export class CityPage implements OnInit {
   private readonly meta = inject(MetaService);
+  private readonly districtIndex = inject(DistrictIndexService);
 
   ngOnInit(): void {
     this.meta.setTitle('City Districts | Newportmaeve Archives');
@@ -23,22 +20,25 @@ export class CityPage implements OnInit {
     this.meta.setOgTitle('Newport Maeve Districts');
     this.meta.setOgDescription('Discover the unique districts that make up the city of Newport Maeve.');
     this.meta.setOgType('website');
+
+    this.loadDistricts();
   }
-  protected readonly districts: District[] = [
-    {
-      name: 'Saltmarket Ward',
-      slug: 'saltmarket-ward',
-      summary: 'A harbor district where contracts are whispered, not signed.'
-    },
-    {
-      name: 'Glass Meridian',
-      slug: 'glass-meridian',
-      summary: 'Skyline observatories and mirrored courtyards hide old secrets.'
-    },
-    {
-      name: 'Cathedral Underground',
-      slug: 'cathedral-underground',
-      summary: 'Subterranean archives beneath a flooded basilica.'
+
+  protected readonly districts = signal<District[]>([]);
+  protected readonly loading = signal(true);
+  protected readonly error = signal<string | null>(null);
+
+  private async loadDistricts(): Promise<void> {
+    try {
+      this.loading.set(true);
+      await this.districtIndex.ensureIndex();
+      const allDistricts = await this.districtIndex.findAll();
+      this.districts.set(allDistricts);
+    } catch (err) {
+      console.error('Error loading districts:', err);
+      this.error.set('Failed to load districts');
+    } finally {
+      this.loading.set(false);
     }
-  ];
+  }
 }

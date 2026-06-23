@@ -1,13 +1,39 @@
 <section>
   <a routerLink="/city" class="back-link">Back to city map</a>
-  <h1>{{ displayName() | titlecase }}</h1>
-  <p>
-    District deep-dive page for <strong>{{ district() }}</strong>.
-    Add timeline fragments, maps, and district factions here.
-  </p>
 
-  <app-social-share
-    [title]="'Share this district profile'"
-    [text]="'Discover ' + (displayName() | titlecase) + ' in Newportmaeve Archives.'"
-  ></app-social-share>
+  @if (loading()) {
+    <p>Loading district...</p>
+  } @else if (error()) {
+    <div class="error-message">
+      <p>{{ error() }}</p>
+      <a routerLink="/city" class="button">Back to city</a>
+    </div>
+  } @else if (district()) {
+    <article class="district-detail">
+      <h1>{{ district()!.name }}</h1>
+      <p class="summary">{{ district()!.summary }}</p>
+
+      @if (district()!.description) {
+        <section class="description">
+          <p>{{ district()!.description }}</p>
+        </section>
+      }
+
+      @if (district()!.tags && district()!.tags.length > 0) {
+        <section class="tags">
+          <h2>District Type</h2>
+          <ul class="tag-list">
+            @for (tag of district()!.tags; track tag) {
+              <li class="tag">{{ tag }}</li>
+            }
+          </ul>
+        </section>
+      }
+    </article>
+
+    <app-social-share
+      [title]="'Share this district profile'"
+      [text]="'Discover ' + district()!.name + ' in Newportmaeve Archives.'"
+    ></app-social-share>
+  }
 </section>
