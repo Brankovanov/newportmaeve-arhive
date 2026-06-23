@@ -26,6 +26,6 @@ Disallow: /dist
 Disallow: /build
 
 # Specify sitemap location
-Sitemap: https://newportmaeve-archives.com/sitemap.xml
-Sitemap: https://newportmaeve-archives.com/sitemap-characters.xml
-Sitemap: https://newportmaeve-archives.com/sitemap-districts.xml
+Sitemap: https://newportmaeve.com/sitemap.xml
+Sitemap: https://newportmaeve.com/sitemap-characters.xml
+Sitemap: https://newportmaeve.com/sitemap-districts.xml
