@@ -1,0 +1,23 @@
+@use '../../../../../styles/variables' as v;
+
+.stat-counter {
+  display: grid;
+  gap: v.$space-2;
+}
+
+.stat-counter__value {
+  margin: 0;
+  color: v.$color-accent;
+  font-family: v.$font-utility;
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  line-height: 1;
+}
+
+.stat-counter__label {
+  margin: 0;
+  color: v.$color-text-muted;
+  font-family: v.$font-sans;
+  font-size: v.$fs-xs;
+  letter-spacing: v.$ls-wider;
+  text-transform: uppercase;
+}

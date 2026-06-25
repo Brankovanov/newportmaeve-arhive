@@ -1,0 +1,28 @@
+<section class="series-summary">
+  <div class="series-summary__copy">
+    <p class="series-summary__eyebrow">The Series</p>
+    <h2>A City Built on Ambition. A World Built on Blood.</h2>
+
+    @for (paragraph of series().description; track paragraph) {
+      <p [innerHTML]="paragraph"></p>
+    }
+
+    <div class="series-summary__stats" aria-label="Series overview statistics">
+      @for (stat of series().stats; track stat.label) {
+        <app-card elevation="hover" padding="sm" class="series-summary__stat-card">
+          <app-stat-counter [value]="stat.value" [label]="stat.label"></app-stat-counter>
+        </app-card>
+      }
+    </div>
+  </div>
+
+  <div class="series-summary__visual">
+    <img
+      [ngSrc]="series().ironcladImage?.src ?? '/images/content/ironclad.webp'"
+      [alt]="series().ironcladImage?.alt ?? 'The Ironclad Consortium tower in Newport Maeve'"
+      width="960"
+      height="1200"
+      sizes="(max-width: 960px) 100vw, 40vw"
+    />
+  </div>
+</section>

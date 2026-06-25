@@ -1,0 +1,65 @@
+@use '../../../../../styles/variables' as v;
+
+.quotes-section {
+  padding: v.$gap-section v.$space-8;
+  background: v.$color-pitch;
+}
+
+.quotes-section__inner {
+  display: grid;
+  gap: v.$space-8;
+  max-width: v.$container-md;
+  margin: 0 auto;
+}
+
+.quotes-section__eyebrow {
+  margin: 0;
+  color: v.$color-accent;
+  font-family: v.$font-sans;
+  font-size: v.$fs-xs;
+  font-weight: v.$fw-medium;
+  letter-spacing: v.$ls-wider;
+  text-transform: uppercase;
+}
+
+h2 {
+  margin: 0;
+  color: v.$color-text;
+  font-family: v.$font-display;
+  font-size: v.$fs-2xl;
+  line-height: v.$lh-tight;
+}
+
+.quotes-section__stack {
+  display: grid;
+  gap: v.$space-12;
+}
+
+blockquote {
+  margin: 0;
+  padding-left: v.$space-6;
+  border-left: 3px solid v.$color-brass-dim;
+}
+
+blockquote p {
+  margin: 0;
+  color: v.$color-text;
+  font-family: v.$font-body;
+  font-size: v.$fs-md;
+  line-height: v.$lh-loose;
+}
+
+cite {
+  display: block;
+  margin-top: v.$space-4;
+  color: v.$color-text-muted;
+  font-family: v.$font-sans;
+  font-size: v.$fs-sm;
+  font-style: normal;
+}
+
+@media (max-width: 700px) {
+  .quotes-section {
+    padding: v.$gap-md v.$space-6;
+  }
+}

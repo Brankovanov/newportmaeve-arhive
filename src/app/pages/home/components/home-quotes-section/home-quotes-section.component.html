@@ -1,0 +1,17 @@
+<section class="quotes-section">
+  <div class="quotes-section__inner">
+    <p class="quotes-section__eyebrow">From the Prequel</p>
+    <h2>Words from the Dark</h2>
+
+    <div class="quotes-section__stack">
+      @for (quote of quotes(); track quote.id) {
+        <blockquote>
+          <p>"{{ quote.text }}"</p>
+          <cite>
+            — {{ quote.speaker }}@if (quote.context) {, {{ quote.context }}}
+          </cite>
+        </blockquote>
+      }
+    </div>
+  </div>
+</section>

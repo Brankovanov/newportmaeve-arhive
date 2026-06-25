@@ -1,0 +1,37 @@
+<section id="characters" class="character-section">
+  <div class="character-section__heading">
+    <p class="character-section__eyebrow">The Cast</p>
+    <h2>Characters of Newport Maeve</h2>
+    <p class="character-section__subheading">
+      Immortals and orphans. Angels and enforcers. In Newport Maeve, everyone is something
+      other than what they appear.
+    </p>
+  </div>
+
+  <div class="character-grid" role="list" aria-label="Featured characters">
+    @for (character of characters(); track character.slug) {
+      <app-card elevation="hover" padding="none" class="character-card">
+        <article role="listitem">
+          <a class="character-card__link" [routerLink]="['/characters', character.slug]">
+            <div class="character-card__overlay">
+              <p class="character-card__tagline">{{ character.tagline }}</p>
+              <h3>{{ character.name }}</h3>
+              <p class="character-card__quote">{{ character.quote }}</p>
+            </div>
+          </a>
+        </article>
+      </app-card>
+    }
+  </div>
+
+  <div class="character-section__footer">
+    <p>Hover to reveal.</p>
+    <a
+      href="https://newport-maeve.fandom.com/wiki/Newport_Maeve_Chronicles_Wiki"
+      target="_blank"
+      rel="noreferrer noopener"
+    >
+      More on the fandom wiki →
+    </a>
+  </div>
+</section>

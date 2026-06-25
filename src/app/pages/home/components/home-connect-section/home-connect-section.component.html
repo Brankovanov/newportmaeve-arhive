@@ -1,0 +1,27 @@
+<section id="connect" class="connect-section">
+  <div class="connect-section__heading">
+    <p class="connect-section__eyebrow">Follow the Chronicles</p>
+    <h2>Join the World</h2>
+    <p class="connect-section__subheading">
+      The story is growing. Follow production updates, explore the lore, and see the world take
+      shape.
+    </p>
+  </div>
+
+  <div class="connect-grid" role="list" aria-label="Community links">
+    @for (link of links(); track link.url) {
+      <app-card elevation="hover" padding="lg" class="connect-card">
+        <article role="listitem" class="connect-card__item">
+          <p class="connect-card__label">{{ iconByLabel[link.label] ?? '•' }} {{ link.label }}</p>
+          <h3>{{ link.description }}</h3>
+          <a [href]="link.url" target="_blank" rel="noreferrer noopener">Visit link</a>
+        </article>
+      </app-card>
+    }
+  </div>
+
+  <app-social-share
+    [title]="'Share Newportmaeve Archives'"
+    [text]="'Explore the Newportmaeve Archives and discover the world of The Newport Maeve Chronicles.'"
+  ></app-social-share>
+</section>

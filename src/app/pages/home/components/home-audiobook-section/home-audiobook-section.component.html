@@ -1,0 +1,27 @@
+<section id="listen" class="audiobook-section">
+  <p class="audiobook-section__eyebrow">The Audiobook</p>
+  <h2>{{ audiobook().title }}</h2>
+  <p class="audiobook-section__subtitle">
+    The official prequel to the Newport Maeve Chronicles. Nine chapters. One immortal. A city
+    that does not yet know what is coming.
+  </p>
+
+  <div class="audiobook-section__embed-wrapper">
+    <iframe
+      [src]="embedUrl()"
+      title="The Newport Maeve Chronicles prequel audiobook"
+      loading="lazy"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+      allowfullscreen
+    ></iframe>
+  </div>
+
+  <a
+    [href]="audiobook().youtubeUrl"
+    class="audiobook-section__cta"
+    target="_blank"
+    rel="noreferrer noopener"
+  >
+    Watch on YouTube →
+  </a>
+</section>

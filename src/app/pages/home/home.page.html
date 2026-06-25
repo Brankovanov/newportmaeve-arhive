@@ -1,24 +1,40 @@
-<section class="hero">
-  <p class="eyebrow">Dark Audio Fantasy Series</p>
-  <h1>Where the fog remembers every name.</h1>
-  <p class="tagline">
-    Newport Maeve is a city of hidden districts, myth-bound families, and voices that leak through the radio after midnight.
-  </p>
-  <div class="cta-row">
-    <a routerLink="/listen" class="cta primary">Enter the Prequel</a>
-    <a routerLink="/characters" class="cta ghost">Meet the Characters</a>
+@if (loading()) {
+  <section class="status-panel" aria-live="polite">
+    <p class="eyebrow">Loading the Archive</p>
+    <h1>Gathering the city records.</h1>
+    <p>The Newport Maeve home archive is loading its series, cast, districts, and prequel references.</p>
+  </section>
+} @else if (error()) {
+  <section class="status-panel status-panel-error" aria-live="assertive">
+    <p class="eyebrow">Archive Error</p>
+    <h1>Unable to open the landing archive.</h1>
+    <p>{{ error() }}</p>
+  </section>
+} @else {
+  <div class="home-page">
+    @if (series(); as series) {
+      <app-home-hero-section></app-home-hero-section>
+      <app-home-series-summary-section [series]="series"></app-home-series-summary-section>
+    }
+
+    @if (audiobook(); as audiobook) {
+      <app-home-audiobook-section [audiobook]="audiobook"></app-home-audiobook-section>
+    }
+
+    <app-home-character-roster-section
+      [characters]="featuredCharacters()"
+    ></app-home-character-roster-section>
+
+    <app-home-quotes-section [quotes]="featuredQuotes()"></app-home-quotes-section>
+
+    @if (city(); as city) {
+      <app-home-city-teaser-section [city]="city"></app-home-city-teaser-section>
+    }
+
+    @if (author(); as author) {
+      <app-home-author-section [author]="author"></app-home-author-section>
+    }
+
+    <app-home-connect-section [links]="communityLinks()"></app-home-connect-section>
   </div>
-</section>
-
-<section class="intro">
-  <h2>Series Introduction</h2>
-  <p>
-    The Newport Maeve Chronicles follows a city caught between memory and prophecy.
-    Start with the prequel audiobook, then explore the cast, the city map, and the fractured districts shaping the story.
-  </p>
-
-  <app-social-share
-    [title]="'Share Newportmaeve Archives'"
-    [text]="'Explore the Newportmaeve Archives and discover the city chronicles.'"
-  ></app-social-share>
-</section>
+}

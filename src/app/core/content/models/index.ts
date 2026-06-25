@@ -176,6 +176,7 @@ export interface SeriesInfo {
   /** Eye-catching stats shown in the hero counter block */
   stats: SeriesStat[];
   coverImage: NmImage;
+  ironcladImage?: NmImage;
 }
 
 // ── Community links ───────────────────────────────────────────────────────────

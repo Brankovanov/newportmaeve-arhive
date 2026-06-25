@@ -1,0 +1,82 @@
+@use '../../../../../styles/variables' as v;
+
+.audiobook-section {
+  display: grid;
+  gap: v.$space-6;
+  justify-items: center;
+  padding: v.$gap-section v.$space-8;
+  background: v.$color-pitch;
+  text-align: center;
+}
+
+.audiobook-section__eyebrow {
+  margin: 0;
+  color: v.$color-accent;
+  font-family: v.$font-sans;
+  font-size: v.$fs-xs;
+  font-weight: v.$fw-medium;
+  letter-spacing: v.$ls-wider;
+  text-transform: uppercase;
+}
+
+h2 {
+  margin: 0;
+  color: v.$color-text;
+  font-family: v.$font-display;
+  font-size: v.$fs-2xl;
+  line-height: v.$lh-tight;
+}
+
+.audiobook-section__subtitle {
+  max-width: 48rem;
+  margin: 0;
+  color: v.$color-text-muted;
+  font-family: v.$font-body;
+  font-size: v.$fs-md;
+  line-height: v.$lh-base;
+}
+
+.audiobook-section__embed-wrapper {
+  width: 100%;
+  max-width: 50rem;
+  aspect-ratio: 16 / 9;
+  border: v.$border-width solid v.$color-border;
+  background: v.$color-bg-sunken;
+  box-shadow: v.$shadow-lg;
+}
+
+.audiobook-section__embed-wrapper iframe {
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+.audiobook-section__cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 2.75rem;
+  padding: 0.75rem 1.1rem;
+  border: v.$border-width solid v.$color-border;
+  background: rgb(255 255 255 / 0.02);
+  color: v.$color-text;
+  font-family: v.$font-utility;
+  font-size: v.$fs-xs;
+  letter-spacing: v.$ls-wide;
+  text-decoration: none;
+  text-transform: uppercase;
+  transition: v.$transition-all;
+}
+
+.audiobook-section__cta:hover,
+.audiobook-section__cta:focus-visible {
+  border-color: v.$color-accent;
+  box-shadow: v.$glow-brass;
+  color: v.$color-accent-hover;
+}
+
+@media (max-width: 700px) {
+  .audiobook-section {
+    padding: v.$gap-md v.$space-6;
+  }
+}

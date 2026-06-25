@@ -1,0 +1,21 @@
+<section id="map" class="city-teaser-section">
+  <div class="city-teaser-section__heading">
+    <p class="city-teaser-section__eyebrow">The World</p>
+    <h2>{{ city().name }}</h2>
+    <p class="city-teaser-section__subheading">
+      Where the Zarina River meets the Moon Sea. The Confederacy's crown jewel and monument of
+      its technological and logistic progress.
+    </p>
+  </div>
+
+  <a class="city-teaser-section__map-link" routerLink="/city" aria-label="Explore Newport Maeve and its districts">
+    <img
+      [ngSrc]="city().mapImage.src"
+      [alt]="city().mapImage.alt"
+      width="1600"
+      height="1050"
+      sizes="100vw"
+    />
+    <span class="city-teaser-section__cta">Explore the city →</span>
+  </a>
+</section>

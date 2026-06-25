@@ -1,0 +1,98 @@
+@use '../../../../../styles/variables' as v;
+
+.connect-section {
+  display: grid;
+  gap: v.$space-8;
+  padding: v.$gap-section v.$space-8;
+  background: v.$color-charcoal;
+}
+
+.connect-section__heading {
+  display: grid;
+  gap: v.$space-4;
+}
+
+.connect-section__eyebrow {
+  margin: 0;
+  color: v.$color-accent;
+  font-family: v.$font-sans;
+  font-size: v.$fs-xs;
+  font-weight: v.$fw-medium;
+  letter-spacing: v.$ls-wider;
+  text-transform: uppercase;
+}
+
+h2,
+h3 {
+  margin: 0;
+  color: v.$color-text;
+  font-family: v.$font-display;
+  line-height: v.$lh-tight;
+}
+
+h2 {
+  font-size: v.$fs-2xl;
+}
+
+h3 {
+  font-size: v.$fs-lg;
+}
+
+.connect-section__subheading {
+  margin: 0;
+  color: v.$color-text-muted;
+  font-family: v.$font-body;
+  font-size: v.$fs-md;
+  line-height: v.$lh-base;
+}
+
+.connect-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: v.$space-6;
+}
+
+.connect-card,
+.connect-card__item {
+  display: block;
+  height: 100%;
+}
+
+.connect-card__item {
+  display: grid;
+  gap: v.$space-3;
+}
+
+.connect-card__label {
+  margin: 0;
+  color: v.$color-accent;
+  font-family: v.$font-sans;
+  font-size: v.$fs-sm;
+  letter-spacing: v.$ls-wide;
+}
+
+.connect-card a {
+  color: v.$color-text;
+  font-family: v.$font-utility;
+  font-size: v.$fs-xs;
+  letter-spacing: v.$ls-wide;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+
+.connect-card a:hover,
+.connect-card a:focus-visible {
+  color: v.$color-accent-hover;
+}
+
+@media (max-width: 900px) {
+  .connect-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 700px) {
+  .connect-section {
+    padding: v.$gap-md v.$space-6;
+  }
+}

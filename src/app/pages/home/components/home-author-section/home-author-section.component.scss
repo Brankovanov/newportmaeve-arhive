@@ -1,0 +1,71 @@
+@use '../../../../../styles/variables' as v;
+
+.author-section {
+  display: grid;
+  grid-template-columns: minmax(0, 1.2fr) minmax(18rem, 0.8fr);
+  gap: v.$gap-md;
+  align-items: start;
+  padding: v.$gap-section v.$space-8;
+  background: v.$color-pitch;
+}
+
+.author-section__copy {
+  display: grid;
+  gap: v.$space-4;
+}
+
+.author-section__eyebrow {
+  margin: 0;
+  color: v.$color-accent;
+  font-family: v.$font-sans;
+  font-size: v.$fs-xs;
+  font-weight: v.$fw-medium;
+  letter-spacing: v.$ls-wider;
+  text-transform: uppercase;
+}
+
+h2 {
+  margin: 0;
+  color: v.$color-text;
+  font-family: v.$font-display;
+  font-size: v.$fs-2xl;
+  line-height: v.$lh-tight;
+}
+
+p {
+  margin: 0;
+  color: v.$color-text-muted;
+  font-family: v.$font-body;
+  font-size: v.$fs-md;
+  line-height: v.$lh-base;
+}
+
+.author-section__visual {
+  margin: 0;
+  overflow: hidden;
+  border: v.$border-width solid v.$color-border;
+  box-shadow: v.$shadow-lg;
+  transition: box-shadow v.$duration-base v.$ease-in-out;
+}
+
+.author-section__visual img {
+  width: 100%;
+  height: auto;
+}
+
+.author-section__visual:hover,
+.author-section__visual:focus-within {
+  box-shadow: v.$glow-brass;
+}
+
+@media (max-width: 900px) {
+  .author-section {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 700px) {
+  .author-section {
+    padding: v.$gap-md v.$space-6;
+  }
+}

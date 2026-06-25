@@ -1,0 +1,84 @@
+@use '../../../../../styles/variables' as v;
+
+.city-teaser-section {
+  display: grid;
+  gap: v.$space-8;
+  padding: v.$gap-section v.$space-8;
+  background: v.$color-charcoal;
+}
+
+.city-teaser-section__heading {
+  display: grid;
+  gap: v.$space-4;
+}
+
+.city-teaser-section__eyebrow {
+  margin: 0;
+  color: v.$color-accent;
+  font-family: v.$font-sans;
+  font-size: v.$fs-xs;
+  font-weight: v.$fw-medium;
+  letter-spacing: v.$ls-wider;
+  text-transform: uppercase;
+}
+
+h2 {
+  margin: 0;
+  color: v.$color-text;
+  font-family: v.$font-display;
+  font-size: v.$fs-2xl;
+  line-height: v.$lh-tight;
+}
+
+.city-teaser-section__subheading {
+  margin: 0;
+  color: v.$color-text-muted;
+  font-family: v.$font-body;
+  font-size: v.$fs-md;
+  line-height: v.$lh-base;
+}
+
+.city-teaser-section__map-link {
+  position: relative;
+  display: block;
+  overflow: hidden;
+  border: v.$border-width solid v.$color-border;
+  box-shadow: v.$shadow-lg;
+}
+
+.city-teaser-section__map-link img {
+  width: 100%;
+  height: auto;
+}
+
+.city-teaser-section__cta {
+  position: absolute;
+  bottom: v.$space-6;
+  left: v.$space-6;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 2.75rem;
+  padding: 0.75rem 1.1rem;
+  border: v.$border-width solid v.$color-border;
+  background: rgb(10 10 10 / 0.84);
+  color: v.$color-text;
+  font-family: v.$font-utility;
+  font-size: v.$fs-xs;
+  letter-spacing: v.$ls-wide;
+  text-transform: uppercase;
+  transition: v.$transition-all;
+}
+
+.city-teaser-section__map-link:hover .city-teaser-section__cta,
+.city-teaser-section__map-link:focus-visible .city-teaser-section__cta {
+  border-color: v.$color-accent;
+  box-shadow: v.$glow-brass;
+  color: v.$color-accent-hover;
+}
+
+@media (max-width: 700px) {
+  .city-teaser-section {
+    padding: v.$gap-md v.$space-6;
+  }
+}

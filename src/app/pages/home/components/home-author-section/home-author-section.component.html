@@ -1,0 +1,17 @@
+<section id="author" class="author-section">
+  <div class="author-section__copy">
+    <p class="author-section__eyebrow">The Author</p>
+    <h2>{{ author().name }}</h2>
+    <p [innerHTML]="author().bio"></p>
+  </div>
+
+  <figure class="author-section__visual">
+    <img
+      [ngSrc]="author().image.src"
+      [alt]="author().image.alt"
+      width="820"
+      height="1024"
+      sizes="(max-width: 900px) 100vw, 35vw"
+    />
+  </figure>
+</section>
